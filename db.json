@@ -1,0 +1,145 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Arjun Sharma",
+      "email": "arjun@gmail.com",
+      "phone": "9876543210",
+      "password": "password123"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Spice Garden",
+      "cuisine": ["North Indian", "Mughlai"],
+      "rating": 4.3,
+      "deliveryTime": 30,
+      "deliveryFee": 40,
+      "minOrder": 150,
+      "image": "https://via.placeholder.com/400x200?text=Spice+Garden",
+      "isVeg": false,
+      "address": "Banjara Hills, Hyderabad"
+    },
+    {
+      "id": 2,
+      "name": "Green Leaf",
+      "cuisine": ["South Indian", "Kerala"],
+      "rating": 4.5,
+      "deliveryTime": 25,
+      "deliveryFee": 30,
+      "minOrder": 100,
+      "image": "https://via.placeholder.com/400x200?text=Green+Leaf",
+      "isVeg": true,
+      "address": "Jubilee Hills, Hyderabad"
+    },
+    {
+      "id": 3,
+      "name": "Burger Barn",
+      "cuisine": ["American", "Fast Food"],
+      "rating": 4.1,
+      "deliveryTime": 20,
+      "deliveryFee": 25,
+      "minOrder": 120,
+      "image": "https://via.placeholder.com/400x200?text=Burger+Barn",
+      "isVeg": false,
+      "address": "Madhapur, Hyderabad"
+    },
+    {
+      "id": 4,
+      "name": "Dosa Plaza",
+      "cuisine": ["South Indian"],
+      "rating": 4.6,
+      "deliveryTime": 15,
+      "deliveryFee": 20,
+      "minOrder": 80,
+      "image": "https://via.placeholder.com/400x200?text=Dosa+Plaza",
+      "isVeg": true,
+      "address": "SR Nagar, Hyderabad"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": 1,
+      "restaurantId": 1,
+      "name": "Butter Chicken",
+      "category": "Main Course",
+      "price": 280,
+      "isVeg": false,
+      "image": "https://via.placeholder.com/150?text=Butter+Chicken",
+      "description": "Creamy tomato based chicken curry"
+    },
+    {
+      "id": 2,
+      "restaurantId": 1,
+      "name": "Paneer Tikka",
+      "category": "Starters",
+      "price": 220,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=Paneer+Tikka",
+      "description": "Grilled cottage cheese with spices"
+    },
+    {
+      "id": 3,
+      "restaurantId": 1,
+      "name": "Gulab Jamun",
+      "category": "Desserts",
+      "price": 80,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=Gulab+Jamun",
+      "description": "Soft milk solid dumplings in sugar syrup"
+    },
+    {
+      "id": 4,
+      "restaurantId": 2,
+      "name": "Masala Dosa",
+      "category": "Main Course",
+      "price": 120,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=Masala+Dosa",
+      "description": "Crispy crepe with spiced potato filling"
+    },
+    {
+      "id": 5,
+      "restaurantId": 2,
+      "name": "Idli Sambar",
+      "category": "Starters",
+      "price": 80,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=Idli+Sambar",
+      "description": "Steamed rice cakes with lentil soup"
+    },
+    {
+      "id": 6,
+      "restaurantId": 3,
+      "name": "Classic Burger",
+      "category": "Main Course",
+      "price": 180,
+      "isVeg": false,
+      "image": "https://via.placeholder.com/150?text=Classic+Burger",
+      "description": "Juicy beef patty with lettuce and cheese"
+    },
+    {
+      "id": 7,
+      "restaurantId": 3,
+      "name": "French Fries",
+      "category": "Starters",
+      "price": 90,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=French+Fries",
+      "description": "Crispy golden fries with dipping sauce"
+    },
+    {
+      "id": 8,
+      "restaurantId": 4,
+      "name": "Plain Dosa",
+      "category": "Main Course",
+      "price": 70,
+      "isVeg": true,
+      "image": "https://via.placeholder.com/150?text=Plain+Dosa",
+      "description": "Thin crispy rice crepe"
+    }
+  ],
+  "orders": [],
+  "addresses": []
+}
