@@ -1,0 +1,45 @@
+<div class="card" [class.closed]="!restaurant.isOpen">
+
+  <!-- IMAGE -->
+  <div class="card-img-wrap">
+    <img
+      [src]="restaurant.image"
+      [alt]="restaurant.name"
+      class="card-img"
+    />
+    <div class="offer-tag" *ngIf="restaurant.offer">
+      {{ restaurant.offer }}
+    </div>
+    <div class="closed-overlay" *ngIf="!restaurant.isOpen">
+      <span>Currently closed</span>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="card-body">
+    <div class="card-top">
+      <div class="card-name">{{ restaurant.name }}</div>
+      <div class="veg-icon" [class.nonveg]="!restaurant.isVeg">
+        <div class="veg-dot"></div>
+      </div>
+    </div>
+
+    <div class="card-cuisine">
+      {{ restaurant.cuisine.join(', ') }}
+    </div>
+
+    <div class="card-meta">
+      <app-star-rating
+        [rating]="restaurant.rating"
+        [totalRatings]="restaurant.totalRatings"
+      />
+      <span class="dot-sep">•</span>
+      <span class="meta-txt">{{ restaurant.deliveryTime }} min</span>
+      <span class="dot-sep">•</span>
+      <span class="meta-txt">
+        {{ restaurant.deliveryFee === 0 ? 'Free delivery' : (restaurant.deliveryFee | currencyFormat) + ' delivery' }}
+      </span>
+    </div>
+  </div>
+
+</div>

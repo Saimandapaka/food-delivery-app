@@ -1,0 +1,65 @@
+<nav class="navbar">
+
+  <!-- LEFT — Logo + Location -->
+  <div class="nav-left">
+    <div class="logo" (click)="navigateTo('/home')">
+      QuickBite
+    </div>
+    <div class="location">
+      <span class="location-icon">📍</span>
+      <span class="location-text">Banjara Hills, Hyderabad</span>
+      <span class="location-arrow">▾</span>
+    </div>
+  </div>
+
+  <!-- CENTER — Search (desktop only) -->
+  <div class="nav-center">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        placeholder="Search for restaurants or food..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- RIGHT — Links + Cart -->
+  <div class="nav-right">
+    <div
+      class="nav-link"
+      [class.active]="isActive('/notifications')"
+      (click)="navigateTo('/notifications')">
+      <span>🔔</span>
+      <span class="nav-link-text">Notifications</span>
+      <span class="notif-badge" *ngIf="notificationCount > 0">
+        {{ notificationCount }}
+      </span>
+    </div>
+
+    <div
+      class="nav-link"
+      [class.active]="isActive('/orders')"
+      (click)="navigateTo('/orders')">
+      <span>📦</span>
+      <span class="nav-link-text">Orders</span>
+    </div>
+
+    <div
+      class="nav-link"
+      [class.active]="isActive('/profile')"
+      (click)="navigateTo('/profile')">
+      <span>👤</span>
+      <span class="nav-link-text">Profile</span>
+    </div>
+
+    <div class="cart-btn" (click)="navigateTo('/cart')">
+      <span>🛒</span>
+      <span class="cart-text">Cart</span>
+      <span class="cart-badge" *ngIf="cartCount > 0">
+        {{ cartCount }}
+      </span>
+    </div>
+  </div>
+
+</nav>
