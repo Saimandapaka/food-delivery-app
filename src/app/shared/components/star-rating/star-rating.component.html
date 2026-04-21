@@ -1,0 +1,9 @@
+<div class="rating-wrap">
+  <div class="rating-badge" [class.high]="rating >= 4" [class.mid]="rating >= 3 && rating < 4" [class.low]="rating < 3">
+    <span class="star">★</span>
+    <span class="value">{{ rating }}</span>
+  </div>
+  <span class="count" *ngIf="showCount && totalRatings > 0">
+    ({{ totalRatings }})
+  </span>
+</div>

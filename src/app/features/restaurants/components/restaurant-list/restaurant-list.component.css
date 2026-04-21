@@ -1,0 +1,108 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 40px;
+}
+
+/* FILTERS */
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 6px 14px;
+  background: white;
+  cursor: pointer;
+  color: #1a1a1a;
+  transition: all 0.2s;
+}
+
+.chip:hover { border-color: #FF5722; color: #FF5722; }
+.chip.active { background: #FF5722; color: white; border-color: #FF5722; }
+
+/* SECTION TITLE */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* SKELETON */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.skel { background: #e0e0e0; border-radius: 4px; }
+.skel-img { width: 100%; height: 140px; border-radius: 0; }
+.skel-line { height: 12px; margin: 10px 12px 6px; }
+.skel-line.short { width: 60%; }
+.skel-line.shorter { width: 40%; margin-bottom: 14px; }
+
+/* STATE BOXES */
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.state-icon { font-size: 48px; margin-bottom: 16px; }
+.state-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.state-sub { font-size: 14px; color: #757575; margin-bottom: 20px; }
+
+.retry-btn {
+  background: #FF5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 1024px) {
+  .grid, .skeleton-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .page { padding: 16px; }
+  .grid, .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid, .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+}

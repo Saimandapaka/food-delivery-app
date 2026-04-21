@@ -5,141 +5,378 @@
       "name": "Arjun Sharma",
       "email": "arjun@gmail.com",
       "phone": "9876543210",
-      "password": "password123"
+      "password": "password123",
+      "avatar": ""
     }
   ],
+
   "restaurants": [
     {
       "id": 1,
       "name": "Spice Garden",
       "cuisine": ["North Indian", "Mughlai"],
       "rating": 4.3,
+      "totalRatings": 1240,
       "deliveryTime": 30,
       "deliveryFee": 40,
       "minOrder": 150,
-      "image": "https://via.placeholder.com/400x200?text=Spice+Garden",
+      "image": "https://via.placeholder.com/600x200?text=Spice+Garden",
       "isVeg": false,
-      "address": "Banjara Hills, Hyderabad"
+      "address": "Banjara Hills, Hyderabad",
+      "isOpen": true,
+      "offer": "20% OFF above ₹299"
     },
     {
       "id": 2,
       "name": "Green Leaf",
       "cuisine": ["South Indian", "Kerala"],
       "rating": 4.5,
+      "totalRatings": 980,
       "deliveryTime": 25,
       "deliveryFee": 30,
       "minOrder": 100,
-      "image": "https://via.placeholder.com/400x200?text=Green+Leaf",
+      "image": "https://via.placeholder.com/600x200?text=Green+Leaf",
       "isVeg": true,
-      "address": "Jubilee Hills, Hyderabad"
+      "address": "Jubilee Hills, Hyderabad",
+      "isOpen": true,
+      "offer": null
     },
     {
       "id": 3,
       "name": "Burger Barn",
       "cuisine": ["American", "Fast Food"],
       "rating": 4.1,
+      "totalRatings": 760,
       "deliveryTime": 20,
-      "deliveryFee": 25,
+      "deliveryFee": 0,
       "minOrder": 120,
-      "image": "https://via.placeholder.com/400x200?text=Burger+Barn",
+      "image": "https://via.placeholder.com/600x200?text=Burger+Barn",
       "isVeg": false,
-      "address": "Madhapur, Hyderabad"
+      "address": "Madhapur, Hyderabad",
+      "isOpen": true,
+      "offer": "Free delivery"
     },
     {
       "id": 4,
       "name": "Dosa Plaza",
       "cuisine": ["South Indian"],
       "rating": 4.6,
+      "totalRatings": 2100,
       "deliveryTime": 15,
       "deliveryFee": 20,
       "minOrder": 80,
-      "image": "https://via.placeholder.com/400x200?text=Dosa+Plaza",
+      "image": "https://via.placeholder.com/600x200?text=Dosa+Plaza",
       "isVeg": true,
-      "address": "SR Nagar, Hyderabad"
-    }
-  ],
-  "menuItems": [
-    {
-      "id": 1,
-      "restaurantId": 1,
-      "name": "Butter Chicken",
-      "category": "Main Course",
-      "price": 280,
-      "isVeg": false,
-      "image": "https://via.placeholder.com/150?text=Butter+Chicken",
-      "description": "Creamy tomato based chicken curry"
-    },
-    {
-      "id": 2,
-      "restaurantId": 1,
-      "name": "Paneer Tikka",
-      "category": "Starters",
-      "price": 220,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=Paneer+Tikka",
-      "description": "Grilled cottage cheese with spices"
-    },
-    {
-      "id": 3,
-      "restaurantId": 1,
-      "name": "Gulab Jamun",
-      "category": "Desserts",
-      "price": 80,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=Gulab+Jamun",
-      "description": "Soft milk solid dumplings in sugar syrup"
-    },
-    {
-      "id": 4,
-      "restaurantId": 2,
-      "name": "Masala Dosa",
-      "category": "Main Course",
-      "price": 120,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=Masala+Dosa",
-      "description": "Crispy crepe with spiced potato filling"
+      "address": "SR Nagar, Hyderabad",
+      "isOpen": true,
+      "offer": null
     },
     {
       "id": 5,
-      "restaurantId": 2,
-      "name": "Idli Sambar",
-      "category": "Starters",
-      "price": 80,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=Idli+Sambar",
-      "description": "Steamed rice cakes with lentil soup"
+      "name": "The Pizza Co.",
+      "cuisine": ["Italian", "Pizza"],
+      "rating": 4.2,
+      "totalRatings": 530,
+      "deliveryTime": 35,
+      "deliveryFee": 50,
+      "minOrder": 200,
+      "image": "https://via.placeholder.com/600x200?text=The+Pizza+Co",
+      "isVeg": false,
+      "address": "Kondapur, Hyderabad",
+      "isOpen": true,
+      "offer": "Buy 1 Get 1 on weekends"
     },
     {
       "id": 6,
-      "restaurantId": 3,
-      "name": "Classic Burger",
-      "category": "Main Course",
-      "price": 180,
+      "name": "Biryani House",
+      "cuisine": ["Hyderabadi", "Biryani"],
+      "rating": 4.7,
+      "totalRatings": 3400,
+      "deliveryTime": 40,
+      "deliveryFee": 35,
+      "minOrder": 180,
+      "image": "https://via.placeholder.com/600x200?text=Biryani+House",
       "isVeg": false,
-      "image": "https://via.placeholder.com/150?text=Classic+Burger",
-      "description": "Juicy beef patty with lettuce and cheese"
+      "address": "Secunderabad, Hyderabad",
+      "isOpen": false,
+      "offer": null
+    }
+  ],
+
+  "menuItems": [
+    { "id": 1, "restaurantId": 1, "name": "Paneer Tikka", "category": "Starters", "price": 220, "isVeg": true, "image": "https://via.placeholder.com/150?text=Paneer+Tikka", "description": "Grilled cottage cheese marinated in spices, served with mint chutney", "isPopular": true },
+    { "id": 2, "restaurantId": 1, "name": "Chicken Seekh Kebab", "category": "Starters", "price": 280, "isVeg": false, "image": "https://via.placeholder.com/150?text=Seekh+Kebab", "description": "Minced chicken with herbs grilled on skewers", "isPopular": false },
+    { "id": 3, "restaurantId": 1, "name": "Butter Chicken", "category": "Main Course", "price": 320, "isVeg": false, "image": "https://via.placeholder.com/150?text=Butter+Chicken", "description": "Creamy tomato-based chicken curry, best paired with naan", "isPopular": true },
+    { "id": 4, "restaurantId": 1, "name": "Dal Makhani", "category": "Main Course", "price": 240, "isVeg": true, "image": "https://via.placeholder.com/150?text=Dal+Makhani", "description": "Slow-cooked black lentils in buttery gravy", "isPopular": false },
+    { "id": 5, "restaurantId": 1, "name": "Garlic Naan", "category": "Breads", "price": 60, "isVeg": true, "image": "https://via.placeholder.com/150?text=Garlic+Naan", "description": "Soft leavened bread with garlic and butter", "isPopular": false },
+    { "id": 6, "restaurantId": 1, "name": "Tandoori Roti", "category": "Breads", "price": 40, "isVeg": true, "image": "https://via.placeholder.com/150?text=Tandoori+Roti", "description": "Whole wheat bread baked in tandoor", "isPopular": false },
+    { "id": 7, "restaurantId": 1, "name": "Gulab Jamun", "category": "Desserts", "price": 80, "isVeg": true, "image": "https://via.placeholder.com/150?text=Gulab+Jamun", "description": "Soft milk solid dumplings in sugar syrup", "isPopular": true },
+    { "id": 8, "restaurantId": 1, "name": "Rasgulla", "category": "Desserts", "price": 70, "isVeg": true, "image": "https://via.placeholder.com/150?text=Rasgulla", "description": "Soft chenna balls soaked in sugar syrup", "isPopular": false },
+    { "id": 9, "restaurantId": 1, "name": "Mango Lassi", "category": "Drinks", "price": 90, "isVeg": true, "image": "https://via.placeholder.com/150?text=Mango+Lassi", "description": "Chilled yogurt drink blended with fresh mango", "isPopular": true },
+    { "id": 10, "restaurantId": 1, "name": "Masala Chai", "category": "Drinks", "price": 40, "isVeg": true, "image": "https://via.placeholder.com/150?text=Masala+Chai", "description": "Spiced Indian tea with ginger and cardamom", "isPopular": false },
+
+    { "id": 11, "restaurantId": 2, "name": "Idli Sambar", "category": "Starters", "price": 80, "isVeg": true, "image": "https://via.placeholder.com/150?text=Idli+Sambar", "description": "Steamed rice cakes with lentil soup and coconut chutney", "isPopular": true },
+    { "id": 12, "restaurantId": 2, "name": "Vada", "category": "Starters", "price": 60, "isVeg": true, "image": "https://via.placeholder.com/150?text=Vada", "description": "Crispy fried lentil doughnuts served with sambar", "isPopular": false },
+    { "id": 13, "restaurantId": 2, "name": "Masala Dosa", "category": "Main Course", "price": 120, "isVeg": true, "image": "https://via.placeholder.com/150?text=Masala+Dosa", "description": "Crispy crepe with spiced potato filling", "isPopular": true },
+    { "id": 14, "restaurantId": 2, "name": "Pesarattu", "category": "Main Course", "price": 100, "isVeg": true, "image": "https://via.placeholder.com/150?text=Pesarattu", "description": "Green moong dal crepe with ginger chutney", "isPopular": false },
+    { "id": 15, "restaurantId": 2, "name": "Payasam", "category": "Desserts", "price": 70, "isVeg": true, "image": "https://via.placeholder.com/150?text=Payasam", "description": "South Indian rice pudding with cardamom", "isPopular": false },
+    { "id": 16, "restaurantId": 2, "name": "Filter Coffee", "category": "Drinks", "price": 50, "isVeg": true, "image": "https://via.placeholder.com/150?text=Filter+Coffee", "description": "Traditional South Indian drip coffee with froth", "isPopular": true },
+
+    { "id": 17, "restaurantId": 3, "name": "Classic Burger", "category": "Burgers", "price": 180, "isVeg": false, "image": "https://via.placeholder.com/150?text=Classic+Burger", "description": "Juicy beef patty with lettuce, tomato and cheese", "isPopular": true },
+    { "id": 18, "restaurantId": 3, "name": "Veggie Burger", "category": "Burgers", "price": 140, "isVeg": true, "image": "https://via.placeholder.com/150?text=Veggie+Burger", "description": "Crispy veggie patty with fresh vegetables", "isPopular": false },
+    { "id": 19, "restaurantId": 3, "name": "French Fries", "category": "Sides", "price": 90, "isVeg": true, "image": "https://via.placeholder.com/150?text=French+Fries", "description": "Crispy golden fries with dipping sauce", "isPopular": true },
+    { "id": 20, "restaurantId": 3, "name": "Onion Rings", "category": "Sides", "price": 100, "isVeg": true, "image": "https://via.placeholder.com/150?text=Onion+Rings", "description": "Crispy battered onion rings", "isPopular": false },
+    { "id": 21, "restaurantId": 3, "name": "Chocolate Milkshake", "category": "Drinks", "price": 130, "isVeg": true, "image": "https://via.placeholder.com/150?text=Choco+Shake", "description": "Thick and creamy chocolate milkshake", "isPopular": true },
+
+    { "id": 22, "restaurantId": 4, "name": "Plain Dosa", "category": "Dosas", "price": 70, "isVeg": true, "image": "https://via.placeholder.com/150?text=Plain+Dosa", "description": "Thin crispy rice crepe", "isPopular": false },
+    { "id": 23, "restaurantId": 4, "name": "Mysore Masala Dosa", "category": "Dosas", "price": 130, "isVeg": true, "image": "https://via.placeholder.com/150?text=Mysore+Dosa", "description": "Spicy red chutney inside crispy dosa with potato filling", "isPopular": true },
+    { "id": 24, "restaurantId": 4, "name": "Rava Dosa", "category": "Dosas", "price": 110, "isVeg": true, "image": "https://via.placeholder.com/150?text=Rava+Dosa", "description": "Crispy semolina crepe with onions and green chilli", "isPopular": true },
+    { "id": 25, "restaurantId": 4, "name": "Mini Idli", "category": "Tiffins", "price": 80, "isVeg": true, "image": "https://via.placeholder.com/150?text=Mini+Idli", "description": "12 small idlis in sambar with ghee", "isPopular": false },
+    { "id": 26, "restaurantId": 4, "name": "Coconut Chutney", "category": "Extras", "price": 20, "isVeg": true, "image": "https://via.placeholder.com/150?text=Chutney", "description": "Fresh ground coconut chutney", "isPopular": false },
+
+    { "id": 27, "restaurantId": 5, "name": "Margherita Pizza", "category": "Pizzas", "price": 280, "isVeg": true, "image": "https://via.placeholder.com/150?text=Margherita", "description": "Classic tomato base, mozzarella and fresh basil", "isPopular": true },
+    { "id": 28, "restaurantId": 5, "name": "Pepperoni Pizza", "category": "Pizzas", "price": 350, "isVeg": false, "image": "https://via.placeholder.com/150?text=Pepperoni", "description": "Loaded with spicy pepperoni and mozzarella", "isPopular": true },
+    { "id": 29, "restaurantId": 5, "name": "Garlic Bread", "category": "Sides", "price": 120, "isVeg": true, "image": "https://via.placeholder.com/150?text=Garlic+Bread", "description": "Toasted bread with garlic butter and herbs", "isPopular": false },
+    { "id": 30, "restaurantId": 5, "name": "Tiramisu", "category": "Desserts", "price": 180, "isVeg": true, "image": "https://via.placeholder.com/150?text=Tiramisu", "description": "Italian coffee-flavoured dessert", "isPopular": true },
+
+    { "id": 31, "restaurantId": 6, "name": "Chicken Biryani", "category": "Biryani", "price": 280, "isVeg": false, "image": "https://via.placeholder.com/150?text=Chicken+Biryani", "description": "Hyderabadi dum biryani with tender chicken pieces", "isPopular": true },
+    { "id": 32, "restaurantId": 6, "name": "Mutton Biryani", "category": "Biryani", "price": 360, "isVeg": false, "image": "https://via.placeholder.com/150?text=Mutton+Biryani", "description": "Slow-cooked mutton biryani with caramelised onions", "isPopular": true },
+    { "id": 33, "restaurantId": 6, "name": "Veg Biryani", "category": "Biryani", "price": 200, "isVeg": true, "image": "https://via.placeholder.com/150?text=Veg+Biryani", "description": "Fragrant basmati rice with mixed vegetables", "isPopular": false },
+    { "id": 34, "restaurantId": 6, "name": "Mirchi Ka Salan", "category": "Sides", "price": 80, "isVeg": true, "image": "https://via.placeholder.com/150?text=Mirchi+Salan", "description": "Traditional Hyderabadi chilli curry", "isPopular": false },
+    { "id": 35, "restaurantId": 6, "name": "Double Ka Meetha", "category": "Desserts", "price": 90, "isVeg": true, "image": "https://via.placeholder.com/150?text=Double+Ka+Meetha", "description": "Hyderabadi bread pudding with dry fruits", "isPopular": true }
+  ],
+
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "restaurantId": 1,
+      "restaurantName": "Spice Garden",
+      "items": [
+        { "menuItemId": 3, "name": "Butter Chicken", "price": 320, "quantity": 2 },
+        { "menuItemId": 1, "name": "Paneer Tikka", "price": 220, "quantity": 1 }
+      ],
+      "subtotal": 860,
+      "deliveryFee": 40,
+      "taxes": 43,
+      "discount": 172,
+      "total": 771,
+      "status": "delivered",
+      "paymentMethod": "online",
+      "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
+      "placedAt": "2024-04-12T19:30:00",
+      "deliveredAt": "2024-04-12T20:05:00",
+      "timeline": [
+        { "status": "placed", "label": "Order placed", "time": "2024-04-12T19:30:00" },
+        { "status": "confirmed", "label": "Confirmed by restaurant", "time": "2024-04-12T19:33:00" },
+        { "status": "preparing", "label": "Food being prepared", "time": "2024-04-12T19:35:00" },
+        { "status": "out_for_delivery", "label": "Out for delivery", "time": "2024-04-12T19:55:00" },
+        { "status": "delivered", "label": "Delivered", "time": "2024-04-12T20:05:00" }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "restaurantId": 2,
+      "restaurantName": "Green Leaf",
+      "items": [
+        { "menuItemId": 13, "name": "Masala Dosa", "price": 120, "quantity": 1 },
+        { "menuItemId": 11, "name": "Idli Sambar", "price": 80, "quantity": 2 }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 30,
+      "taxes": 15,
+      "discount": 0,
+      "total": 325,
+      "status": "delivered",
+      "paymentMethod": "cash",
+      "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
+      "placedAt": "2024-04-10T12:15:00",
+      "deliveredAt": "2024-04-10T12:45:00",
+      "timeline": [
+        { "status": "placed", "label": "Order placed", "time": "2024-04-10T12:15:00" },
+        { "status": "confirmed", "label": "Confirmed by restaurant", "time": "2024-04-10T12:17:00" },
+        { "status": "preparing", "label": "Food being prepared", "time": "2024-04-10T12:20:00" },
+        { "status": "out_for_delivery", "label": "Out for delivery", "time": "2024-04-10T12:35:00" },
+        { "status": "delivered", "label": "Delivered", "time": "2024-04-10T12:45:00" }
+      ]
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "restaurantId": 3,
+      "restaurantName": "Burger Barn",
+      "items": [
+        { "menuItemId": 17, "name": "Classic Burger", "price": 180, "quantity": 1 },
+        { "menuItemId": 19, "name": "French Fries", "price": 90, "quantity": 1 }
+      ],
+      "subtotal": 270,
+      "deliveryFee": 0,
+      "taxes": 14,
+      "discount": 0,
+      "total": 284,
+      "status": "cancelled",
+      "paymentMethod": "online",
+      "address": "Level 3, Cyber Towers, Madhapur, Hyderabad",
+      "placedAt": "2024-04-08T20:00:00",
+      "deliveredAt": null,
+      "timeline": [
+        { "status": "placed", "label": "Order placed", "time": "2024-04-08T20:00:00" },
+        { "status": "cancelled", "label": "Order cancelled", "time": "2024-04-08T20:05:00" }
+      ]
+    }
+  ],
+
+  "addresses": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "Home",
+      "addressLine": "Flat 4B, Prestige Towers",
+      "area": "Banjara Hills",
+      "city": "Hyderabad",
+      "pincode": "500034",
+      "isDefault": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "Work",
+      "addressLine": "Level 3, Cyber Towers",
+      "area": "Madhapur",
+      "city": "Hyderabad",
+      "pincode": "500081",
+      "isDefault": false
+    }
+  ],
+
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "orders",
+      "title": "Your order is out for delivery!",
+      "description": "Order #QB20240412001 from Spice Garden is on its way. Estimated arrival: 10 mins.",
+      "isRead": false,
+      "createdAt": "2024-04-12T19:55:00"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "offers",
+      "title": "50% off on your next order!",
+      "description": "Use code SAVE50 to get 50% off (up to ₹100) on orders above ₹299. Valid till midnight.",
+      "isRead": false,
+      "createdAt": "2024-04-12T18:00:00"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "type": "orders",
+      "title": "Order delivered successfully",
+      "description": "Your order from Green Leaf has been delivered. Enjoy your meal! Rate your experience.",
+      "isRead": false,
+      "createdAt": "2024-04-10T12:45:00"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "type": "updates",
+      "title": "New restaurants in your area",
+      "description": "5 new restaurants just joined QuickBite near Banjara Hills. Check them out!",
+      "isRead": true,
+      "createdAt": "2024-04-09T10:00:00"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "type": "offers",
+      "title": "Weekend special — Free delivery!",
+      "description": "Get free delivery on all orders this weekend. No minimum order required.",
+      "isRead": true,
+      "createdAt": "2024-04-07T08:00:00"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "type": "orders",
+      "title": "Order confirmed",
+      "description": "Burger Barn has confirmed your order #QB20240410005. Estimated time: 20 mins.",
+      "isRead": true,
+      "createdAt": "2024-04-08T20:01:00"
     },
     {
       "id": 7,
-      "restaurantId": 3,
-      "name": "French Fries",
-      "category": "Starters",
-      "price": 90,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=French+Fries",
-      "description": "Crispy golden fries with dipping sauce"
+      "userId": 1,
+      "type": "updates",
+      "title": "App updated with new features",
+      "description": "We have added live order tracking and faster checkout. Update the app to enjoy!",
+      "isRead": true,
+      "createdAt": "2024-04-05T09:00:00"
     },
     {
       "id": 8,
-      "restaurantId": 4,
-      "name": "Plain Dosa",
-      "category": "Main Course",
-      "price": 70,
-      "isVeg": true,
-      "image": "https://via.placeholder.com/150?text=Plain+Dosa",
-      "description": "Thin crispy rice crepe"
+      "userId": 1,
+      "type": "offers",
+      "title": "New coupon: FLAT100",
+      "description": "Get ₹100 off on your next order above ₹399. Use code FLAT100 at checkout.",
+      "isRead": true,
+      "createdAt": "2024-04-04T11:00:00"
     }
   ],
-  "orders": [],
-  "addresses": []
+
+  "offers": [
+    {
+      "id": 1,
+      "code": "SAVE50",
+      "title": "50% off up to ₹100",
+      "description": "Get 50% off on orders above ₹299",
+      "discountType": "percentage",
+      "discountValue": 50,
+      "maxDiscount": 100,
+      "minOrderValue": 299,
+      "restaurantId": null,
+      "validTill": "2024-12-31",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "code": "FLAT100",
+      "title": "Flat ₹100 off",
+      "description": "Get flat ₹100 off on orders above ₹399",
+      "discountType": "flat",
+      "discountValue": 100,
+      "maxDiscount": 100,
+      "minOrderValue": 399,
+      "restaurantId": null,
+      "validTill": "2024-12-31",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "code": "SPICE20",
+      "title": "20% off at Spice Garden",
+      "description": "Get 20% off on all orders from Spice Garden above ₹299",
+      "discountType": "percentage",
+      "discountValue": 20,
+      "maxDiscount": 150,
+      "minOrderValue": 299,
+      "restaurantId": 1,
+      "validTill": "2024-12-31",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "code": "FREEDEL",
+      "title": "Free delivery",
+      "description": "Free delivery on all orders this weekend",
+      "discountType": "delivery",
+      "discountValue": 100,
+      "maxDiscount": 100,
+      "minOrderValue": 0,
+      "restaurantId": null,
+      "validTill": "2024-12-31",
+      "isActive": false
+    }
+  ]
 }

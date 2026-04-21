@@ -1,0 +1,28 @@
+.rating-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+
+.rating-badge.high  { background: #43a047; }
+.rating-badge.mid   { background: #fb8c00; }
+.rating-badge.low   { background: #e53935; }
+
+.star { font-size: 12px; }
+.value { font-size: 12px; }
+
+.count {
+  font-size: 12px;
+  color: var(--text-muted, #757575);
+}

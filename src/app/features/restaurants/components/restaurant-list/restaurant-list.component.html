@@ -1,0 +1,64 @@
+<div class="page">
+
+  <!-- LOADING STATE -->
+  <div class="skeleton-grid" *ngIf="isLoading">
+    <div class="skeleton-card" *ngFor="let item of [1,2,3,4,6,8]">
+      <div class="skel skel-img"></div>
+      <div class="skel skel-line"></div>
+      <div class="skel skel-line short"></div>
+      <div class="skel skel-line shorter"></div>
+    </div>
+  </div>
+
+  <!-- ERROR STATE -->
+  <div class="state-box" *ngIf="hasError && !isLoading">
+    <div class="state-icon">⚠️</div>
+    <div class="state-title">Something went wrong</div>
+    <div class="state-sub">
+      We couldn't load restaurants. Please check your connection.
+    </div>
+    <button class="retry-btn" (click)="loadRestaurants()">
+      Try again
+    </button>
+  </div>
+
+  <!-- LOADED STATE -->
+  <div *ngIf="!isLoading && !hasError">
+
+    <!-- FILTERS -->
+    <div class="filter-row">
+      <button
+        class="chip"
+        *ngFor="let filter of filters"
+        [class.active]="selectedFilter === filter.value"
+        (click)="applyFilter(filter.value)">
+        {{ filter.label }}
+      </button>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="state-box" *ngIf="filteredRestaurants.length === 0">
+      <div class="state-icon">🍽️</div>
+      <div class="state-title">No restaurants found</div>
+      <div class="state-sub">Try removing some filters.</div>
+      <button class="retry-btn" (click)="applyFilter('all')">
+        Clear filters
+      </button>
+    </div>
+
+    <!-- RESTAURANT GRID -->
+    <div class="section-title" *ngIf="filteredRestaurants.length > 0">
+      Restaurants near you ({{ filteredRestaurants.length }})
+    </div>
+
+    <div class="grid" *ngIf="filteredRestaurants.length > 0">
+      <div
+        *ngFor="let restaurant of filteredRestaurants"
+        (click)="goToRestaurant(restaurant.id)">
+        <app-restaurant-card [restaurant]="restaurant" />
+      </div>
+    </div>
+
+  </div>
+
+</div>
