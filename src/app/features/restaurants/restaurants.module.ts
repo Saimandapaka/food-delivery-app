@@ -5,14 +5,19 @@ import { RestaurantsRoutingModule } from './restaurants-routing.module';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { SharedModule } from '@shared/shared.module';
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
-
+import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
+import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
+import { MenuModule } from '@features/menu/menu.module';
+import { MenuCartComponent } from '@features/menu/components/menu-card/menu-cart.component';
+import { MenuListComponent } from '@features/menu/components/menu-list/menu-list.component';
 
 @NgModule({
-  declarations: [RestaurantListComponent,RestaurantCardComponent],
+  declarations: [RestaurantListComponent,RestaurantCardComponent,RestaurantDetailsComponent],
   imports: [
     CommonModule,
-    RestaurantsRoutingModule,
-    SharedModule
+    SharedModule,
+    RestaurantsRoutingModule,MenuModule
+    
   ]
 })
 export class RestaurantsModule { }
