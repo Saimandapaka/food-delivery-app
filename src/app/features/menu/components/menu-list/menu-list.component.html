@@ -1,0 +1,130 @@
+<div class="menu-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div
+      *ngFor="let category of groupedMenu | keyvalue"
+      class="side-item"
+      (click)="scrollToCategory(category.key)"
+      
+    >
+      {{ category.key }} ({{ category.value.length }})
+    </div>
+  </div>
+    <app-menu-cart
+    [groupedMenu]="groupedMenu"
+    [cart]="cart"
+  [restaurant]="restaurant"
+  >
+  </app-menu-cart>
+
+  <!-- MENU -->
+  <!-- <div class="menu-section">
+
+    <div *ngFor="let category of groupedMenu | keyvalue">
+
+      <div [id]="category.key" class="category-block">
+
+        <h3 class="category-title">
+          {{ category.key }} ({{ category.value.length }})
+        </h3>
+
+        <div *ngFor="let item of category.value" class="menu-item">
+          -->
+          
+          <!-- LEFT -->
+           <!-- <div class="left">
+           <div [ngClass]="item.isVeg ? 'veg-symbol' : 'nonveg-symbol'"></div>
+          
+          <div class="info">
+            <span *ngIf="item.isPopular" class="bestseller">Bestseller</span>
+            
+            <h4>{{ item.name }}</h4>
+            <p class="price">{{ item.price | currencyFormat }}</p>
+            <p class="desc">{{ item.description }}</p>
+          </div> 
+          </div> -->
+         
+          <!-- RIGHT -->
+          <!-- <div class="image-box">
+            <img [src]="item.image" />
+
+            <div class="add-wrapper">
+
+  <ng-container *ngIf="getCartItem(item) as cartItem; else addBtn">
+
+    <div class="qty-box">
+      <button (click)="decrease(item)">−</button>
+      <span>{{ cartItem.quantity }}</span>
+      <button (click)="increase(item)">+</button>
+    </div>
+
+  </ng-container>
+
+  <ng-template #addBtn>
+    <button (click)="addToCart(item)" class="add-btn">
+      ADD
+    </button>
+  </ng-template>
+
+  </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div> -->
+
+  <!-- CART -->
+  <!-- <div class="cart">
+
+    <h3>Your order</h3>
+    <p class="restaurant-name"> from {{ restaurant?.name }}</p>
+    <div class="divider"></div>
+  <div class="item-section">
+  <div *ngFor="let item of cart" class="cart-row"> -->
+
+  <!-- LEFT SIDE -->
+  <!-- <div class="cart-left"> -->
+
+    <!-- 🔥 BUTTONS FIRST -->
+    <!-- <div class="cart-controls">
+      <button class="btn-dec" (click)="decrease(item)">-</button>
+      <span class="qty">{{ item.quantity }}</span>
+      <button class="btn-inc" (click)="increase(item)">+</button>
+    </div> -->
+
+    <!-- THEN ITEM NAME -->
+    <!-- <div class="cart-name">
+      {{ item.name }}
+    </div>
+
+  </div> -->
+
+  <!-- RIGHT SIDE -->
+  <!-- <div class="cart-price">
+    ₹{{ item.price * item.quantity }}
+  </div>
+
+  </div>
+    <div class="divider"></div>
+    <div class="bill">
+      <p>
+        <span>Subtotal: </span>
+        <span>₹{{ getTotal() }}</span>
+      </p>
+      <p>
+        <span>Delivery: </span> 
+        <span>₹{{ restaurant?.deliveryFee }}</span>
+      </p>
+     </div>
+     <div class="divider"></div>
+      <h3>Total: ₹{{ getTotal() + (restaurant?.deliveryFee || 0) }}</h3>
+    <button class="checkout">Proceed to checkout →</button>
+
+  </div> -->
+
+</div>

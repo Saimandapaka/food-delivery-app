@@ -52,12 +52,16 @@
     </div>
 
     <div class="grid" *ngIf="filteredRestaurants.length > 0">
-      <div
-        *ngFor="let restaurant of filteredRestaurants"
-        (click)="goToRestaurant(restaurant.id)">
-        <app-restaurant-card [restaurant]="restaurant" />
-      </div>
-    </div>
+  <div
+    *ngFor="let restaurant of filteredRestaurants"
+    [routerLink]="[restaurant.id]"
+    class="card-wrapper">
+    
+    <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+  
+  </div>
+</div>
+    
 
   </div>
 

@@ -1,0 +1,175 @@
+<div class="page" *ngIf="restaurant">
+
+  
+
+    <!-- Breadcrumb + Veg Toggle -->
+    <div class="top-bar">
+      <nav class="breadcrumb-nav">
+        <a routerLink="/">Home</a>
+        <span class="sep">></span>
+        <span>{{ restaurant.name }}</span>
+      </nav>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner" *ngIf="restaurant">
+  <img 
+    [src]="restaurant.image" 
+    [alt]="restaurant.name">
+</div>
+  <div class="restaurant-card">
+    <!-- Details -->
+    <div class="details">
+
+      <div class="top-row">
+        <div class="left">
+          <h2 class="restaurant-title">{{ restaurant.name }}</h2>
+          <p class="restaurant-info">
+            {{ restaurant.cuisine.join(', ') }} • {{ restaurant.address }}
+          </p>
+        </div>
+
+        <div class="veg-toggle">
+          <span class="label">Veg Only</span>
+          <label class="switch">
+            <<input type="checkbox" (change)="vegOnly = !vegOnly">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="badges">
+        <span class="badge">
+          <app-star-rating
+            [rating]="restaurant.rating"
+            [totalRatings]="restaurant.totalRatings">
+          </app-star-rating>
+        </span>
+
+        <span class="badge">{{ restaurant.deliveryTime }} min</span>
+        <span class="badge">{{ restaurant.deliveryFee | currencyFormat }} delivery</span>
+        <span class="badge">Min ₹{{ restaurant.minOrder }}</span>
+        <span class="badge">{{ restaurant.totalRatings }} ratings</span>
+      </div>
+
+      <div class="offer" *ngIf="restaurant.offer">
+        🏷️ {{ restaurant.offer }}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<app-menu-list
+  *ngIf="restaurant"
+  [restaurant]="restaurant"
+  [restaurantId]="restaurant.id || 0"
+  [vegOnly]="vegOnly">
+</app-menu-list>
+ 
+<app-menu-cart [vegOnly]="vegOnly"></app-menu-cart>
+<!-- <div class="menu-layout">
+
+  
+  <div class="sidebar">
+    <div
+      *ngFor="let category of groupedMenu | keyvalue"
+      class="side-item"
+      (click)="scrollToCategory(category.key)"
+      
+    >
+      {{ category.key }} ({{ category.value.length }})
+    </div>
+  </div>
+
+  
+  <div class="menu-section">
+
+    <div *ngFor="let category of groupedMenu | keyvalue">
+
+      <div [id]="category.key" class="category-block">
+
+        <h3 class="category-title">
+          {{ category.key }} ({{ category.value.length }})
+        </h3>
+
+        <div *ngFor="let item of category.value" class="menu-item">
+         
+          
+       
+           <div class="left">
+           <div [ngClass]="item.isVeg ? 'veg-symbol' : 'nonveg-symbol'"></div>
+          
+          <div class="info">
+            <span *ngIf="item.isPopular" class="bestseller">Bestseller</span>
+            
+            <h4>{{ item.name }}</h4>
+            <p class="price">₹{{ item.price }}</p>
+            <p class="desc">{{ item.description }}</p>
+          </div> 
+          </div>
+         
+         
+          <div class="image-box">
+            <img [src]="item.image" />
+
+            <div class="add-wrapper">
+
+  <ng-container *ngIf="getCartItem(item) as cartItem; else addBtn">
+
+    <div class="qty-box">
+      <button (click)="decrease(item)">−</button>
+      <span>{{ cartItem.quantity }}</span>
+      <button (click)="increase(item)">+</button>
+    </div>
+
+  </ng-container>
+
+  <ng-template #addBtn>
+    <button (click)="addToCart(item)" class="add-btn">
+      ADD
+    </button>
+  </ng-template>
+
+</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="cart">
+
+    <h3>Your order</h3>
+    <p class="restaurant-name"> from {{ restaurant?.name }}</p>
+    <div class="divider"></div>
+  <div class="item-section">
+    <div *ngFor="let item of cart" class="cart-item">
+      <span>{{ item.name }}</span>
+      <span>₹{{ item.price * item.quantity }}</span>
+    </div>
+  </div>
+    <div class="divider"></div>
+    <div class="bill">
+      <p>
+        <span>Subtotal: </span>
+        <span>₹{{ getTotal() }}</span>
+      </p>
+      <p>
+        <span>Delivery: </span> 
+        <span>₹{{ restaurant?.deliveryFee }}</span>
+      </p>
+     </div>
+     <div class="divider"></div>
+      <h3>Total: ₹{{ getTotal() + (restaurant?.deliveryFee || 0) }}</h3>
+    <button class="checkout">Proceed to checkout →</button>
+
+  </div>
+
+</div> -->
