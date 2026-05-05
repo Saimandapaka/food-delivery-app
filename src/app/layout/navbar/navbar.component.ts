@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  cartCount: number = 10;
+  cartCount: number = 0;
   notificationCount: number = 0;
 
   constructor(private router: Router) {}
