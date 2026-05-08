@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Restaurant } from '../models/restaurant.model';
 import { environment } from '../../../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,13 @@ export class RestaurantService {
     return this.http.get<Restaurant>(`${this.apiUrl}/restaurants/${id}`);
 
   }
-  
+  private selectedRestaurant = new BehaviorSubject<Restaurant | null>(null);
+
+restaurant$ = this.selectedRestaurant.asObservable();
+setSelectedRestaurant(restaurant: Restaurant) {
+  this.selectedRestaurant.next(restaurant);
+}
+  getSelectedRestaurant(){
+    return this.selectedRestaurant.value;
+  }
 }

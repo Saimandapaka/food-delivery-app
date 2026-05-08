@@ -54,7 +54,7 @@
     <div class="grid" *ngIf="filteredRestaurants.length > 0">
   <div
     *ngFor="let restaurant of filteredRestaurants"
-    [routerLink]="[restaurant.id]"
+    (click)="openRestaurant(restaurant)"
     class="card-wrapper">
     
     <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>

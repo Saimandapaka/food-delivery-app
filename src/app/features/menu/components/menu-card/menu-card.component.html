@@ -1,0 +1,47 @@
+<div class="menu-item">
+
+  <!-- LEFT SIDE -->
+  <div class="left">
+
+    <div [ngClass]="item.isVeg ? 'veg-symbol' : 'nonveg-symbol'"></div>
+
+    <div class="info">
+      <span *ngIf="item.isPopular" class="bestseller">
+        Bestseller
+      </span>
+
+      <h4>{{ item.name }}</h4>
+      <p class="price">{{ item.price|currencyFormat }}</p>
+      <p class="desc">{{ item.description }}</p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="image-box">
+
+    <img [src]="item.image" />
+
+    <div class="add-wrapper">
+
+      <ng-container *ngIf="getCartItem(item) as cartItem; else addBtn">
+
+        <div class="qty-box">
+          <button (click)="dec.emit(item)">−</button>
+          <span>{{ cartItem.quantity }}</span>
+          <button (click)="inc.emit(item)">+</button>
+        </div>
+
+      </ng-container>
+
+      <ng-template #addBtn>
+        <button class="add-btn" (click)="add.emit(item)">
+          ADD
+        </button>
+      </ng-template>
+
+    </div>
+
+  </div>
+
+</div>
