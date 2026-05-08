@@ -4,13 +4,14 @@ import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { MenuRoutingModule } from './menu-routing.module';
 import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
 import { SharedModule } from '@shared/shared.module';
-import { MenuCartComponent } from './components/menu-card/menu-cart.component';
+import { MenuCardComponent } from './components/menu-card/menu-card.component';
+
 @NgModule({
-  declarations: [MenuListComponent,MenuCartComponent],
+  declarations: [MenuListComponent,MenuCardComponent],
   imports: [
     CommonModule,
     MenuRoutingModule,SharedModule
   ],
-  exports:[MenuListComponent,MenuCartComponent]
+  exports:[MenuListComponent,MenuCardComponent]
 })
 export class MenuModule { }

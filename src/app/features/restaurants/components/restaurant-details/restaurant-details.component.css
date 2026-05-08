@@ -45,14 +45,14 @@
 .details {
   padding-left: 25px;
 }
-.badges {
+/* .badges {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap; /* allows wrap on small screens */
+  flex-wrap: wrap; 
   margin-top: 10px;
-}
+} */
 
-.badge {
+/* .badge {
   display: inline-flex;
   align-items: center;
   padding: 3px 8px;
@@ -62,7 +62,7 @@
   color: #333;
   border: 1px solid #e0e0e0;
   white-space: nowrap;
-}
+} */
 .restaurant-info {
   font-size: 14px;     /* smaller text */
   color: #666;

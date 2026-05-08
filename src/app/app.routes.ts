@@ -2,39 +2,39 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'home',
-  //   loadChildren: () =>
-  //     import('./features/restaurants/restaurants.module')
-  //       .then(m => m.RestaurantsModule)
-  // },
-  // {
-  //   path: 'restaurants',
-  //   loadChildren: () =>
-  //     import('./features/restaurants/restaurants.module')
-  //       .then(m => m.RestaurantsModule)
-  // },
   {
-  path: 'home',
-  children: [
-    {
-      path: '',
-      redirectTo: 'restaurants',
-      pathMatch: 'full'
-    },
-    {
-      path: 'restaurants',
-      loadChildren: () =>
-        import('./features/restaurants/restaurants.module')
-          .then(m => m.RestaurantsModule)
-    }
-  ]
-},
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./features/restaurants/restaurants.module')
+        .then(m => m.RestaurantsModule)
+  },
+  {
+    path: 'restaurants',
+    loadChildren: () =>
+      import('./features/restaurants/restaurants.module')
+        .then(m => m.RestaurantsModule)
+  },
+//   {
+//   path: 'home',
+//   children: [
+//     {
+//       path: '',
+//       redirectTo: 'restaurants',
+//       pathMatch: 'full'
+//     },
+//     {
+//       path: 'restaurants',
+//       loadChildren: () =>
+//         import('./features/restaurants/restaurants.module')
+//           .then(m => m.RestaurantsModule)
+//     }
+//   ]
+// },
   {
     path: 'menu',
     loadChildren: () =>

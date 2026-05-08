@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuCartComponent } from './menu-cart.component';
+import { MenuCartComponent } from './menu-card.component';
 
 describe('MenuCartComponent', () => {
   let component: MenuCartComponent;

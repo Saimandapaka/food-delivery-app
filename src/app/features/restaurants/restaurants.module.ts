@@ -8,7 +8,7 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
 import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { MenuModule } from '@features/menu/menu.module';
-import { MenuCartComponent } from '@features/menu/components/menu-card/menu-cart.component';
+import { MenuCardComponent } from '@features/menu/components/menu-card/menu-card.component';
 import { MenuListComponent } from '@features/menu/components/menu-list/menu-list.component';
 
 @NgModule({
