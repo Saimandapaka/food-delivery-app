@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 export class MenuService {
 
   constructor() { }
-   private cartSubject = new BehaviorSubject<any[]>([]);
+   public cartSubject = new BehaviorSubject<any[]>([]);
 cart$ = this.cartSubject.asObservable();
   get cart() {
     return this.cartSubject.value;
