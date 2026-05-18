@@ -13,23 +13,21 @@ cart$ = this.cartSubject.asObservable();
   }
 
   addToCart(item: any) {
+  const cart = [...this.cart];
 
-    const cart = [...this.cart];
+  const index = cart.findIndex(i => i.id === item.id);
 
-    const existing = cart.find(i => i.id === item.id);
-
-    if (existing) {
-      existing.quantity++;
-    } else {
-      cart.push({
-        ...item,
-        quantity: 1
-      });
-    }
-
-    this.cartSubject.next(cart);
+  if (index !== -1) {
+    cart[index] = {
+      ...cart[index],
+      quantity: cart[index].quantity + 1
+    };
+  } else {
+    cart.push({ ...item, id: item.id, quantity: 1 });
   }
 
+  this.cartSubject.next(cart);
+}
   increase(item: any) {
 
     const cart = [...this.cart];

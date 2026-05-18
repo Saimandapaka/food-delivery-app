@@ -24,7 +24,7 @@
       <h3 class="category-title">
         {{ category.key }} ({{ category.value.length }})
       </h3>
-
+     
       <!-- ITEMS LOOP HERE -->
       <app-menu-card
         *ngFor="let item of category.value"
@@ -34,8 +34,15 @@
         (inc)="menuservice.increase($event)"
         (dec)="menuservice.decrease($event)">
       </app-menu-card>
-    </div>
+     </div>
+    
   </div>
-
+   <div class="menu-cart">
+        <div *ngIf="cart.length>0" class="cart-summary">
+        <app-cart-summary [id]="cart[0].restaurantId"></app-cart-summary>
+    
+      </div>
+     </div>
+</div>
 
   
