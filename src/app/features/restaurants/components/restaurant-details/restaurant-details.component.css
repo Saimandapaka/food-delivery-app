@@ -1,3 +1,110 @@
+
+@media (max-width: 768px) {
+   .breadcrumb-nav,
+  .custom-breadcrumb {
+    font-size: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+    .banner {
+    width: 318px;
+    height: 120px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* full image visible */
+  }
+  
+  .restaurant-card {
+    margin-top: -30px;   /* small overlap */
+    position: relative;
+    z-index: 2;
+    border-radius: 0 !important;
+  }
+
+
+  .sidebar,
+  .menu-cart{
+    display: none !important;
+  }
+
+  .menu-layout{
+    flex-direction: column;
+  }
+
+  .restaurant-card{
+    border-radius: 0;
+    margin-bottom: 16px;
+  }
+
+  .details{
+    padding: 12px !important;
+  }
+  .veg-toggle {
+    display: none !important;
+  }
+  
+  .top-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .restaurant-title{
+    font-size: 18px !important;
+  }
+
+  .badges{
+    margin-left: 0 !important;
+  }
+
+  .offer{
+    width: auto !important;
+  }
+    
+
+  .top-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* IMPORTANT */
+    text-align: left;
+  }
+
+  .left {
+    width: 100%;
+    text-align: left;
+  }
+
+  .restaurant-title {
+    text-align: left;
+    margin: 0;
+  }
+
+  .restaurant-info {
+    text-align: left;
+  }
+   .rating-count {
+    display: none !important;
+  }
+  
+.page {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  /* .page,
+.restaurant-card {
+  overflow: visible !important;
+} */
+
+
+}
 .custom-breadcrumb {
   display: flex;
   flex-wrap: nowrap;   /* keeps Home > Spice Garden in one line */
@@ -11,11 +118,21 @@
   color: #ff5a5f;
   font-weight: 500;
 }
+.banner {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #eee;
+}
 
 .banner img {
- width: 100%;
-  height: 250px;
+  object-position: center;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+  filter: contrast(1.05) saturate(1.05);
 }
 
 .details h2 {
@@ -45,29 +162,13 @@
 .details {
   padding-left: 25px;
 }
-/* .badges {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap; 
-  margin-top: 10px;
-} */
 
-/* .badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 8px;
-  font-size: 11px;
-  border-radius: 20px;
-  background: #f5f5f5;
-  color: #333;
-  border: 1px solid #e0e0e0;
-  white-space: nowrap;
-} */
 .restaurant-info {
   font-size: 14px;     /* smaller text */
   color: #666;
   margin: 4px 0 8px;
   line-height: 1.4;
+  
 }
 .offer {
   display: inline-block;
@@ -104,7 +205,8 @@
 .restaurant-info {
   font-size: 13px;
   color: gray;
-  margin: 2px 0 0 0;
+  margin: 3px 0 5px 0;
+
 }
 
 /* VEG TOGGLE RIGHT SIDE */
@@ -161,17 +263,27 @@
 /* BADGES SMALL CARDS */
 .badges {
   display: flex;
+  align-items: center;
   gap: 6px;
-  margin-top: 8px;
   flex-wrap: wrap;
-}
 
+  margin-top: 4px;
+  margin-left: 0;   /* FIXED */
+  padding-left: 0;
+}
 .badge {
   font-size: 11px;
   padding: 4px 8px;
   background: #f2f2f2;
-  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  background: #fff;
+  color: #555;
+  font-weight: 400;
+  line-height: 1;
+  
 }
+
 
 /* OFFER SMALL YELLOW */
 .offer {
@@ -184,15 +296,12 @@
   color: #888;   /* muted gray */
   font-weight: 400;
 }
-.banner img {
-  border-radius: 0 !important;
-   /* removes curves */
-}
+
 .restaurant-card {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;   /* 🔥 key for attaching image */
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  margin: 0px;
+  
+  margin-bottom: 30px;
 }
-

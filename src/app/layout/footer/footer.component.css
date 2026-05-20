@@ -65,4 +65,7 @@
   }
   .footer-links { gap: 24px; flex-wrap: wrap; }
   .footer-bottom { padding: 14px 16px; }
+  .footer{
+    display: none;
+  }
 }
