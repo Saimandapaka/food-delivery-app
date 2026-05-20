@@ -1,0 +1,115 @@
+<div class="desktop">
+    <div class="py-4 d-flex justify-content-flex-start m-3">
+
+  <div 
+    class=" border rounded-3 p-4 w-100" 
+    style="max-width: 250px;background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 16px;
+    height: fit-content;"
+  >
+
+    
+    <div class="text-center">
+
+      <div 
+        class="char"
+        
+      >
+        {{firstchar}}
+      </div>
+
+      <h4 class="name">{{name}}</h4>
+
+      <p class="phone">+91 {{phnumber}}</p>
+      <div
+      class="nav-link menu-link  py-2 px-2"
+            [class.active]="selected === 1"
+  (click)="selected = 1">
+      <span>👤</span>
+      <span class="nav-link-text"
+      >Personal info</span>
+    </div>
+    <div
+      class="nav-link menu-link px-2"
+      [class.active]="selected === 2"
+  (click)="selected = 2">
+      <span>📍</span>
+      <span class="nav-link-text">Saved Address</span>
+    </div>
+    <div
+      class="nav-link menu-link py-2 px-2"
+      [class.active]="selected === 3"
+  (click)="selected = 3">
+      <span>📦</span>
+      <span class="nav-link-text">Order History</span>
+    </div>
+    <div
+      class="nav-link menu-link py-2 px-2"
+      [class.active]="selected === 4"
+  (click)="selected = 4">
+      <span>🔔</span>
+      <span class="nav-link-text">Notifycations</span>
+    </div>
+     <div
+      class="nav-link menu-link px-2"
+      [class.active]="selected === 5"
+  (click)="selected = 5" style="margin-right: 15%;">
+      <span class="so" >🚪</span>
+      <span class="nav-link-text">Sign Out</span>
+    </div>
+    </div>
+   
+  </div>
+  <div class="profile-info w-100" >
+  <app-profile-info></app-profile-info>
+</div>
+</div>
+
+</div>
+<div class="mobile  justify-content-center">
+      <div class="mobile-profile " >
+          <div class="m-firstchar">{{firstchar}}</div>
+          <div class="m-name">{{name}}</div>
+          <div class="m-phone">+91 {{phnumber}}</div>
+      </div>
+      <div class="m-list">
+          <div class="m-list-item"data-bs-toggle="collapse"
+        data-bs-target="#profileinfo">
+👤 Personal info <span><i class="bi bi-chevron-down"></i></span>
+
+      </div>
+    <div id="profileinfo" class="collapse hide">
+
+      <div class="card-body">
+        <app-profile-info></app-profile-info>
+      </div>
+
+    </div>
+    <div class="m-list-item"data-bs-toggle="collapse"
+        data-bs-target="#savedaddress">📍 Saved Address<span><i class="bi bi-chevron-down"></i></span>
+    </div>
+
+    <div id="savedaddress" class="collapse hide">
+
+          <div class="card-body">
+            Hello Bootstrap Accordion
+          </div>
+
+    </div>
+          <div class="m-list-item">📦 Order History<span><i class="bi bi-chevron-down"></i></span></div>
+          <div class="m-list-item">🔔 Notifycations<span><i class="bi bi-chevron-down"></i></span></div>
+          <div class="m-list-item">🚪 Sign Out<span><i class="bi bi-chevron-down"></i></span></div>
+      </div>
+ </div>
+
+
+
+  
+
+  
+      
+
+ 
+

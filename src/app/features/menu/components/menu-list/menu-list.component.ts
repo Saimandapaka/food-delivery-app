@@ -6,13 +6,13 @@ import { MenuService } from '@features/menu/services/menu.service';
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
-  styleUrl: './menu-list.component.css'
+  styleUrls: ['./menu-list.component.css']
 })
 export class MenuListComponent implements OnChanges {
    @Input() restaurantId!: number;
   @Input() vegOnly: boolean = false;
   @Input() restaurant: any;
-
+resId!:number;
   menuItems: any[] = [];
   groupedMenu: { [key: string]: any[] } = {};
   cart: any[] = [];
@@ -24,11 +24,12 @@ selectCategory(categoryKey: string) {
   this.activeCategory = categoryKey;
   this.scrollToCategory(categoryKey);
 }
-
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['restaurantId'] || changes['vegOnly']) {
       this.loadMenu();
     }
+    
   }
 
   loadMenu() {
@@ -68,6 +69,7 @@ selectCategory(categoryKey: string) {
 
    this.menuservice.cart$.subscribe((cart: any[]) => {
   this.cart = cart;
+  
 });
     
 

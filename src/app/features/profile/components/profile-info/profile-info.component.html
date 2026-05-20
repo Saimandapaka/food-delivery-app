@@ -1,0 +1,57 @@
+<div class="container w-100" style="margin-left:2%; margin-right:2%; background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 14px;">
+    <div class="header">
+            Personal info
+            <span class="edit-btn" (click)="enable()">Edit</span>
+    </div>
+    <form #form="ngForm">
+
+        <div class="row g-3">
+
+            <div class="field col-md-6">
+                <label>Full name</label>
+                <input 
+                    type="text"
+                   [(ngModel)]="name"
+                    name="username"
+                    class="form-control"
+                    [disabled]="isdisabled">
+            </div>
+
+            <div class="field col-md-6">
+                <label>Mobile number</label>
+                <input 
+                    type="tel"
+                    [(ngModel)]="phnumber"
+                    name="number"
+                    class="form-control"
+                    [disabled]="isdisabled">
+            </div>
+
+            <div class="field col-md-6">
+                <label>Email address</label>
+                <input 
+                    type="email"
+                    [(ngModel)]="email"
+                    name="email"
+                    class="form-control"
+                    [disabled]="isdisabled">
+            </div>
+
+            <div class="field col-md-6">
+                <label>Date of birth</label>
+                <input 
+                    type="text"
+                    [(ngModel)]="dob"
+                    name="dob"
+                    class="form-control"
+                    [disabled]="isdisabled">
+            </div>
+
+        </div>
+        <button class="save-btn" (click)=disable()>Save changes</button>
+    </form>
+
+</div>
