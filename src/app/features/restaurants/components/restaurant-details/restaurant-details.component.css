@@ -196,3 +196,29 @@
   margin: 0px;
 }
 
+.info-card{
+  background: white;
+  border-radius: 10px;
+  border:1px solid #eee;
+  padding:18px;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  display:block;
+  unicode-bidi: isolate;
+  font-family: 'Segoe UI', sans-serif;
+}
+.info-card-title{
+  font-size:15px;
+  font-weight:500;
+  margin-bottom:14px;
+  padding-bottom: 14px;
+  border-bottom: 10px;
+}
+.info-row{
+  display:flex;
+  gap:12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #fafafa;
+  font-size: 13px;
+}
