@@ -12,4 +12,16 @@ export interface Restaurant {
   address: string;
   isOpen: boolean;
   offer: string | null;
+   restaurantInfo?: RestaurantInfo;
+
+}
+export interface RestaurantInfo {
+  address: string;
+  mapLink: string;
+  openingHours: string;
+  openNow: boolean;
+  phone: string;
+  avgCost: string;
+  cuisines: string[];
+  paymentMethods: string[];
 }

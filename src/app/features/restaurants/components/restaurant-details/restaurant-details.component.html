@@ -1,35 +1,44 @@
-<div class="page" *ngIf="restaurant">
-    <!-- Breadcrumb + Veg Toggle -->
-    <div class="top-bar">
-      <nav class="breadcrumb-nav">
-        <a routerLink="/">Home</a>
-        <span class="sep">></span>
-        <span>{{ restaurant.name }}</span>
-      </nav>
-    </div>
+<!-- MENU TAB VIEW -->
+<div
+  class="page"
+  *ngIf="(activeTab === 'menu' || isDesktop) && restaurant">
+  
+  <!-- Breadcrumb -->
+  <div class="top-bar">
+    <nav class="breadcrumb-nav">
+      <a routerLink="/">Home</a>
+      <span class="sep">></span>
+      <span class="res-name">{{ restaurant.name }}</span>
+    </nav>
+  </div>
 
-    <!-- Banner -->
-   <div class="banner" *ngIf="restaurant">
-    <img 
-    [src]="restaurant.image" 
-    [alt]="restaurant.name">
-</div>
+  <!-- Banner -->
+  <div class="banner">
+    <img [src]="restaurant.image" [alt]="restaurant.name">
+  </div>
+
+  <!-- Restaurant Card -->
   <div class="restaurant-card">
-    <!-- Details -->
     <div class="details">
 
       <div class="top-row">
         <div class="left">
           <h2 class="restaurant-title">{{ restaurant.name }}</h2>
+
           <p class="restaurant-info">
-            {{ restaurant.cuisine.join(', ') }} • {{ restaurant.address }}
+            {{ restaurant.cuisine.join(', ') }}
+            •
+            {{ restaurant.address }}
           </p>
         </div>
 
         <div class="veg-toggle">
           <span class="label">Veg Only</span>
+
           <label class="switch">
-            <input type="checkbox" (change)="vegOnly = !vegOnly">
+            <input
+              type="checkbox"
+              (change)="vegOnly = !vegOnly">
             <span class="slider"></span>
           </label>
         </div>
@@ -37,17 +46,28 @@
 
       <!-- BADGES -->
       <div class="badges">
-        
-          <app-star-rating
-            [rating]="restaurant.rating"
-            [totalRatings]="restaurant.totalRatings">
-          </app-star-rating>
-      
 
-        <span class="badge">{{ restaurant.deliveryTime }} min</span>
-        <span class="badge">{{ restaurant.deliveryFee | currencyFormat }} delivery</span>
-        <span class="badge">Min ₹{{ restaurant.minOrder }}</span>
-        <span class="badge rating-count">{{ restaurant.totalRatings }} ratings</span>
+        <app-star-rating
+          [rating]="restaurant.rating"
+          [totalRatings]="restaurant.totalRatings">
+        </app-star-rating>
+
+        <span class="badge">
+          {{ restaurant.deliveryTime }} min
+        </span>
+
+        <span class="badge">
+          {{ restaurant.deliveryFee | currencyFormat }} delivery
+        </span>
+
+        <span class="badge">
+          Min{{ restaurant.minOrder | currencyFormat}}
+        </span>
+
+        <span class="badge rating-count">
+          {{ restaurant.totalRatings }} ratings
+        </span>
+
       </div>
 
       <div class="offer" *ngIf="restaurant.offer">
@@ -55,15 +75,62 @@
       </div>
 
     </div>
-
   </div>
+
 </div>
 
+<!-- MOBILE TABS -->
+<div class="mobile-tabs">
+
+  <button
+    [class.active]="activeTab === 'menu'"
+    (click)="activeTab = 'menu'">
+    Menu
+  </button>
+
+  <button
+    [class.active]="activeTab === 'info'"
+    (click)="activeTab = 'info'">
+    Info
+  </button>
+
+  <button
+    [class.active]="activeTab === 'reviews'"
+    (click)="activeTab = 'reviews'">
+    Reviews
+  </button>
+
+</div>
+
+<!-- MENU -->
 <app-menu-list
-  *ngIf="restaurant"
+  *ngIf="(activeTab === 'menu' || isDesktop) && restaurant"
   [restaurant]="restaurant"
   [restaurantId]="restaurant.id || 0"
   [vegOnly]="vegOnly">
 </app-menu-list>
- 
 
+<!-- INFO -->
+<div
+  class="bottom-grid"
+  *ngIf="restaurant && (activeTab !== 'menu' || isDesktop)">
+
+  <!-- INFO -->
+  <div
+    class="info-wrapper"
+    *ngIf="activeTab === 'info' || isDesktop">
+    <app-info-section
+      [restaurant]="restaurant">
+    </app-info-section>
+  </div>
+
+  <!-- REVIEWS -->
+  <div
+    class="review-wrapper"
+    *ngIf="activeTab === 'reviews' || isDesktop">
+    <app-reviews-section
+      [restaurant]="restaurant">
+    </app-reviews-section>
+  </div>
+
+</div>

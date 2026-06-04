@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '@features/restaurants/services/restaurant.service';
 import { Restaurant } from '@features/restaurants/models/restaurant.model';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { MenuCardComponent } from '@features/menu/components/menu-card/menu-card.component';
+import { HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-restaurant-details',
   standalone: false,
@@ -14,7 +13,12 @@ import { MenuCardComponent } from '@features/menu/components/menu-card/menu-card
   
 })
 export class RestaurantDetailsComponent {
-  //  restaurant?: Restaurant;
+ 
+    activeTab:string="menu";
+    isDesktop: boolean = window.innerWidth > 768;
+    isLoading:boolean=false;
+    hasError:boolean=false;
+    
     restaurant: Restaurant | null = null;
 
   constructor(
@@ -24,10 +28,14 @@ export class RestaurantDetailsComponent {
   ) {}
 
  
+@HostListener('window:resize')
+onResize() {
+  this.isDesktop = window.innerWidth > 768;
+}
 
 
  ngOnInit(): void {
-
+    
     // Get restaurant from service
     this.restaurant =
       this.restaurantService.getSelectedRestaurant();

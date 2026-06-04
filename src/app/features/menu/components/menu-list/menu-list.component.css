@@ -6,6 +6,7 @@
   width: 100%;
   max-width: 100%;
   overflow:visible;
+  margin-top: 30px;
 }
 
 /* SIDEBAR CARD */
@@ -110,7 +111,8 @@
   }
 
   .menu-layout {
-    gap: 0;}
+    gap: 0;
+  margin-top: 10px;}
  .category-title{
   padding-left:9px;
  }
