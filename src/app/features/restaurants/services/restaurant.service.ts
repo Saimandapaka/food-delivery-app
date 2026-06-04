@@ -28,6 +28,6 @@ setSelectedRestaurant(restaurant: Restaurant) {
   this.selectedRestaurant.next(restaurant);
 }
   getSelectedRestaurant(){
-    return this.selectedRestaurant.value;
+    return this.selectedRestaurant.value; 
   }
 }

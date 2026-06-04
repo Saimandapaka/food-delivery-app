@@ -9,14 +9,18 @@ import { CartSummaryComponent } from '@features/cart/components/cart-summary/car
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
+
+  // styleUrls: ['./menu-list.component.css']
+
   styleUrl: './menu-list.component.css',
   
+
 })
 export class MenuListComponent implements OnChanges {
    @Input() restaurantId!: number;
   @Input() vegOnly: boolean = false;
   @Input() restaurant: any;
-
+resId!:number;
   menuItems: any[] = [];
   groupedMenu: { [key: string]: any[] } = {};
   cart: any[] = [];
@@ -28,11 +32,12 @@ selectCategory(categoryKey: string) {
   this.activeCategory = categoryKey;
   this.scrollToCategory(categoryKey);
 }
-
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['restaurantId'] || changes['vegOnly']) {
       this.loadMenu();
     }
+    
   }
 
   loadMenu() {
@@ -73,6 +78,12 @@ selectCategory(categoryKey: string) {
     this.cart = [...items];   // IMPORTANT
     this.cd.detectChanges();  // IMPORTANT
   });
+
+
+   this.menuservice.cart$.subscribe((cart: any[]) => {
+  this.cart = cart;
+  
+});
 
     
 
