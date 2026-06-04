@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CartPageComponent } from '@features/cart/components/cart-page/cart-page.component';
+import { ProfilePageComponent } from '@features/profile/components/profile-page/profile-page.component';
 export const routes: Routes = [
+  {
+    path:'profile',component:ProfilePageComponent
+  },
   {
       path:'cart',component:CartPageComponent
     },
