@@ -1,0 +1,90 @@
+<div class="reviews-card" *ngIf="restaurant?.reviewsData">
+
+  <div class="reviews-card-title">
+    Ratings and Reviews
+  </div>
+
+  <!-- Fixed Rating Section -->
+  <div class="rating-overview">
+
+    <div class="rating-summary">
+      <div class="rating-big">
+        {{ restaurant.rating }}
+      </div>
+
+      <div class="rating-stars">
+        ★★★★☆
+      </div>
+
+      <div class="rating-count">
+        {{ restaurant.totalRatings }} ratings
+      </div>
+    </div>
+
+    <div class="rating-breakdown">
+      <div
+        class="rb-row"
+        *ngFor="let item of restaurant.reviewsData.ratingBreakdown">
+
+        <div class="rb-label">{{ item.label }}</div>
+
+        <div class="rb-bar">
+          <div
+            class="rb-fill"
+            [style.width.%]="item.percentage">
+          </div>
+        </div>
+
+        <div class="rb-val">{{ item.rating }}</div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCROLLABLE REVIEWS ONLY -->
+  <div class="reviews-vertical-slider">
+
+    <div
+      class="review-item"
+      *ngFor="let review of restaurant.reviewsData.reviews; let i=index">
+
+      <div class="reviewer">
+
+        <div
+          class="reviewer-avatar"
+          [ngClass]="'avatar-' + (i % 3)">
+          {{ review.userAvatar }}
+        </div>
+
+        <div class="reviewer-main">
+
+          <div class="reviewer-top">
+
+            <div class="reviewer-name">
+              {{ review.userName }}
+            </div>
+
+            <div class="reviewer-date">
+              {{ review.date }}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="review-rating">
+        {{ review.stars }}
+      </div>
+
+      <div class="review-text">
+        {{ review.reviewText }}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

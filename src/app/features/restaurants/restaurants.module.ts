@@ -8,11 +8,11 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
 import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { MenuModule } from '@features/menu/menu.module';
-import { MenuCardComponent } from '@features/menu/components/menu-card/menu-card.component';
-import { MenuListComponent } from '@features/menu/components/menu-list/menu-list.component';
+import { InfoSectionComponent } from './components/info-section/info-section.component';
+import { ReviewsSectionComponent } from './components/reviews-section/reviews-section.component';
 
 @NgModule({
-  declarations: [RestaurantListComponent,RestaurantCardComponent,RestaurantDetailsComponent],
+  declarations: [RestaurantListComponent,RestaurantCardComponent,RestaurantDetailsComponent,InfoSectionComponent,ReviewsSectionComponent],
   imports: [
     CommonModule,
     SharedModule,

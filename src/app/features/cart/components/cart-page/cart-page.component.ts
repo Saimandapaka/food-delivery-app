@@ -21,8 +21,6 @@ export class CartPageComponent {
 
       this.cartItems = items;
 
-      console.log(items);
-
     });
 
   }

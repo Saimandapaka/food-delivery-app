@@ -1,12 +1,16 @@
 import { Component, input } from '@angular/core';
 import { Input,OnChanges,SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '@features/menu/services/menu.service';
+import { CartModule } from '@features/cart/cart.module';
+import { CartSummaryComponent } from '@features/cart/components/cart-summary/cart-summary.component';
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
-  styleUrl: './menu-list.component.css'
+  styleUrl: './menu-list.component.css',
+  
 })
 export class MenuListComponent implements OnChanges {
    @Input() restaurantId!: number;
@@ -17,7 +21,7 @@ export class MenuListComponent implements OnChanges {
   groupedMenu: { [key: string]: any[] } = {};
   cart: any[] = [];
 
-  constructor(private http: HttpClient,public menuservice :MenuService) {}
+  constructor(private http: HttpClient,public menuservice :MenuService,private cd:ChangeDetectorRef) {}
   activeCategory: string = '';
 
 selectCategory(categoryKey: string) {
@@ -65,10 +69,11 @@ selectCategory(categoryKey: string) {
   console.log(this.groupedMenu);
 }
  ngOnInit(): void {
+  this.menuservice.cart$.subscribe(items => {
+    this.cart = [...items];   // IMPORTANT
+    this.cd.detectChanges();  // IMPORTANT
+  });
 
-   this.menuservice.cart$.subscribe((cart: any[]) => {
-  this.cart = cart;
-});
     
 
   }
