@@ -1,0 +1,20 @@
+<div class="notification-card">
+
+  <div class="notif-iteam"
+       [class.unread]="!notification.isRead"
+        (click)="onClick()" >
+
+        <div class="icon-circle">
+      {{ iconMap[notification.type] }}
+    </div>
+    <div class="n-body">
+      <div class="n-title">{{ notification.title }}</div>
+      <div class="n-desc">{{ notification.description }}</div>
+      <div class="n-time">{{ notification.createdAt | timeAgo }}</div>
+    </div>
+
+    <div class="unread-dot" *ngIf="!notification.isRead"></div>
+
+  </div>
+ 
+</div>

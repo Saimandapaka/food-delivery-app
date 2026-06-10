@@ -27,22 +27,7 @@ export const routes: Routes = [
       import('./features/restaurants/restaurants.module')
         .then(m => m.RestaurantsModule)
   },
-//   {
-//   path: 'home',
-//   children: [
-//     {
-//       path: '',
-//       redirectTo: 'restaurants',
-//       pathMatch: 'full'
-//     },
-//     {
-//       path: 'restaurants',
-//       loadChildren: () =>
-//         import('./features/restaurants/restaurants.module')
-//           .then(m => m.RestaurantsModule)
-//     }
-//   ]
-// },
+
   {
     path: 'menu',
     loadChildren: () =>

@@ -1,0 +1,25 @@
+<div class="notifications">Notifications
+  <div class="notify" *ngIf="unreadCount > 0">{{ unreadCount}} new</div>
+</div>
+<div class="notify-layout">
+
+  <!-- FILTERS -->
+  <div class="notif-filters">
+    <button
+      *ngFor="let filter of filters"
+      class="nf-chip"
+      [class.active]="selectedFilter === filter.value"
+      (click)="applyFilter(filter.value)">
+      {{ filter.label }}
+    </button>
+      <div class="mark-all" (click)=" markAllAsRead()">Mark all as read</div>
+  </div>
+
+  <!-- PASS DATA TO DUMB COMPONENT -->
+  <app-notification-item
+    *ngFor="let notification of filteredNotifications"
+    [notification]="notification"
+    (markRead)="  markSingleAsRead($event)">
+  </app-notification-item>
+
+</div>

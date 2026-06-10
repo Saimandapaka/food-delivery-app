@@ -610,7 +610,7 @@
       "title": "Your order is out for delivery!",
       "description": "Order #QB20240412001 from Spice Garden is on its way. Estimated arrival: 10 mins.",
       "isRead": false,
-      "createdAt": "2024-04-12T19:55:00"
+      "createdAt": "2026-06-12T15:34:00"
     },
     {
       "id": 2,
@@ -619,7 +619,7 @@
       "title": "50% off on your next order!",
       "description": "Use code SAVE50 to get 50% off (up to ₹100) on orders above ₹299. Valid till midnight.",
       "isRead": false,
-      "createdAt": "2024-04-12T18:00:00"
+      "createdAt": "2026-06-10T15:00:00"
     },
     {
       "id": 3,
