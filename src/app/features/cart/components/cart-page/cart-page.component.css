@@ -60,4 +60,61 @@
         font-size: 22px;
     }
 } 
- 
+.desktop-frame {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+}
+ .state-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+.state-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+}
+.state-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+}
+.state-sub {
+    font-size: 13px;
+    color: #757575;
+    margin-bottom: 20px;
+    max-width: 320px;
+    line-height: 1.6;
+}
+.state-btn {
+    background: #FF5722;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: green;
+    padding: 24px;
+}

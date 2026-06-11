@@ -12,8 +12,11 @@ import { RestaurantService } from '@features/restaurants/services/restaurant.ser
 export class CartSummaryComponent {
   constructor(private menuservice:MenuService, private restaurantServvice:RestaurantService){}
   @Input() id!:any;
+  @Input() component!:string;
+  @Input() view!:boolean;
   totalitems!:number;
  totalprice!:number;
+ 
   deliveryfee!:number;
   taxes!:number;
   discount!:number;

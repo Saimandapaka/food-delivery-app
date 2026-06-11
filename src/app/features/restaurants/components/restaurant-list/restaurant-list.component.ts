@@ -51,6 +51,7 @@ export class RestaurantListComponent implements OnInit {
       }
     });
   }
+  
 
   applyFilter(filterValue: string): void {
     this.selectedFilter = filterValue;
