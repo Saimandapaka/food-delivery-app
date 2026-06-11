@@ -1,4 +1,4 @@
-<div class="desktop">
+<div class="desktop" >
     <div class="py-4 d-flex justify-content-flex-start m-3">
 
   <div 
@@ -7,11 +7,12 @@
     border-radius: 8px;
     border: 1px solid #eee;
     padding: 16px;
-    height: fit-content;"
+    height: fit-content;
+    margin-right: 20px;"
   >
 
     
-    <div class="text-center">
+    <div class="text-center stick" >
 
       <div 
         class="char"
@@ -32,9 +33,9 @@
       >Personal info</span>
     </div>
     <div
-      class="nav-link menu-link px-2"
+      class="nav-link menu-link px-2" 
       [class.active]="selected === 2"
-  (click)="selected = 2">
+  (click)="selected = 2" (click)=" scrollToCategory('address')">
       <span>📍</span>
       <span class="nav-link-text">Saved Address</span>
     </div>
@@ -46,7 +47,7 @@
       <span class="nav-link-text">Order History</span>
     </div>
     <div
-      class="nav-link menu-link py-2 px-2"
+      class="nav-link menu-link py-2 px-2" 
       [class.active]="selected === 4"
   (click)="selected = 4">
       <span>🔔</span>
@@ -62,9 +63,15 @@
     </div>
    
   </div>
+  
   <div class="profile-info w-100" >
+    
   <app-profile-info></app-profile-info>
+  <div id="address">
+    <app-address-form></app-address-form>
+  </div>
 </div>
+
 </div>
 
 </div>
@@ -94,14 +101,41 @@
     <div id="savedaddress" class="collapse hide">
 
           <div class="card-body">
-            Hello Bootstrap Accordion
+            <app-address-form></app-address-form>
           </div>
 
     </div>
-          <div class="m-list-item">📦 Order History<span><i class="bi bi-chevron-down"></i></span></div>
-          <div class="m-list-item">🔔 Notifycations<span><i class="bi bi-chevron-down"></i></span></div>
-          <div class="m-list-item">🚪 Sign Out<span><i class="bi bi-chevron-down"></i></span></div>
+          <div class="m-list-item" data-bs-toggle="collapse"
+        data-bs-target="#orderhistory">📦 Order History<span><i class="bi bi-chevron-down"></i></span>
       </div>
+      <div id="orderhistory" class="collapse hide">
+
+          <div class="card-body">
+            ...
+          </div>
+
+    </div>
+          <div class="m-list-item" data-bs-toggle="collapse"
+        data-bs-target="#notifycations">🔔 Notifycations<span><i class="bi bi-chevron-down"></i></span>
+      </div><div id="notifycations" class="collapse hide">
+
+          <div class="card-body">
+           ...
+          </div>
+
+    </div>
+          <div class="m-list-item" data-bs-toggle="collapse"
+        data-bs-target="#signout">🚪 Sign Out<span><i class="bi bi-chevron-down"></i></span>
+      </div>
+      <div id="signout" class="collapse hide">
+
+          <div class="card-body">
+            ...
+          </div>
+
+    </div>
+      </div>
+      
  </div>
 
 

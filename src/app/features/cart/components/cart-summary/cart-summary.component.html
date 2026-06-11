@@ -1,4 +1,4 @@
-<div class="card shadow-sm p-3 order-card " *ngIf="totalitems>0">
+<div class="card shadow-sm p-3 order-card "*ngIf=" totalitems>0 && !view">
   <h5 class="fw-bold mb-3">Order summary</h5>
 
   <div class="d-flex justify-content-between mb-2">
@@ -11,10 +11,7 @@
     <span>{{deliveryfee | currencyFormat}}</span>
   </div>
 
-  <div class="d-flex justify-content-between mb-2">
-    <span>Taxes</span>
-    <span>{{taxes | currencyFormat}}</span>
-  </div>
+  
 
   <div class="d-flex justify-content-between mb-2 text-success fw-medium">
     <span>Discount ({{discount}}% OFF)</span>
@@ -27,11 +24,29 @@
   </div>
 
   <button class="btn w-100 order-btn">
-    Place order →
+   Place Order →
+    <!-- <span *ngIf="component==='cart'">Place Order →</span>
+  <span *ngIf="component==='menu'">Proceed to Checkout →</span> -->
   </button>
 
   <div class="alert mt-3 text-center savings-box p-2 mb-0">
     You save {{discountamount | currencyFormat}} on this order!
   </div>
   
+</div>
+<div class="m-sum"*ngIf="view && component==='cart'">
+        <div class="m-sum-row"><span>Subtotal</span><span>{{totalprice | currencyFormat}}</span></div>
+        <div class="m-sum-row"><span>Delivery</span><span>{{deliveryfee | currencyFormat}}</span></div>
+        <div class="m-sum-row"><span style="color:#2e7d32;">Discount</span><span style="color:#2e7d32;">{{(discountamount | currencyFormat)}}</span></div>
+        <div class="m-sum-row grand"><span>Total</span><span>{{finalamount | currencyFormat}}</span></div>
+        <button class="m-place-btn">Place order →</button>
+</div>
+<div class="m-sum" *ngIf="view && component==='menu'" style="margin-right: 50%;">
+  <div class="cart-bar-m" >
+        <div class="cart-bar-left">
+          <div class="cart-bar-count">{{totalitems}} items added</div>
+          <div class="cart-bar-total">{{finalamount | currencyFormat}} total</div>
+        </div>
+        <button class="cart-bar-right">View cart →</button>
+ </div>
 </div>

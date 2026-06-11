@@ -12,14 +12,28 @@
         (inc)="menuservice.increase($event)"
         (dec)="menuservice.decrease($event)">></app-menu-card>
     </div>
+    <app-address-form></app-address-form>
 </div>
+<div style="height:120px;"></div>
 <div class="d-flex justify-content-center cart-summary">
-     <app-cart-summary [id]="cartItems[0].restaurantId"></app-cart-summary>
+     <app-cart-summary [id]="cartItems[0].restaurantId"
+     [component]="cval"
+     [view]="ismobile"></app-cart-summary>
 </div>
 </div>
 </div>
   <ng-template #emptyCart>
 
-    <app-empty-cart></app-empty-cart>
+  <div class="desktop-frame">
+      
+     
+      <div class="state-box">
+        <div class="state-icon">🛒</div>
+        <div class="state-title">Your cart is empty</div>
+        <div class="state-sub">Looks like you haven't added anything yet. Browse restaurants and add items to get started!</div>
+        <button class="state-btn" routerLink="/home">Browse restaurants</button>
+        
+      </div>
+    </div>
 
   </ng-template>

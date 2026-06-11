@@ -1,1 +1,17 @@
-<p>address-form works!</p>
+
+          <div class="card" >
+            <div class="card-hdr">Saved addresses <span class="edit-btn">+ Add new</span></div>
+            <div class="addr-row" *ngFor="let add of address;  let i = index"
+  (click)="selectAddress(i)"
+  [class.selected-address]="selectedAddressIndex === i">  
+                <div >   
+                    <div class="addr-type">{{add.type}}</div><br>
+                    <div class="addr-txt">{{add.addressLine}},{{add.area}},{{add.city}}</div>
+                </div>
+                <div class="addr-acts">
+                    <span class="addr-edit">Edit</span>
+                    <span class="addr-del">Delete</span>
+                </div>
+            </div>
+            <div class="add-addr-btn">+ Add new address</div>
+          </div>

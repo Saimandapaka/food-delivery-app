@@ -13,4 +13,7 @@ export class ProfileService {
     getAll() {
       return this.http.get<any[]>(`${this.apiUrl}/users`);
     }
+    getAllAddress() {
+      return this.http.get<any[]>(`${this.apiUrl}/addresses`);
+    }
 }
