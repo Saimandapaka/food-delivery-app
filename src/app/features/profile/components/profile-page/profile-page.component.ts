@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '@features/profile/services/profile.service';
 import { ProfileInfoComponent } from '../profile-info/profile-info.component';
-import { AddressFormComponent } from '../address-form/address-form.component';
+import{AddressFormComponent} from '../address-form/address-form.component';
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [ProfileInfoComponent,AddressFormComponent],
+  imports: [ProfileInfoComponent, AddressFormComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
-})
+}) 
 export class ProfilePageComponent {
   selected=1;
   users: any[] = [];
@@ -28,6 +28,7 @@ constructor(private profileService: ProfileService) {}
         console.log(err);
       }
     });
+    
   }
   ngDoCheck(){
     if(this.users.length>0){
@@ -35,8 +36,9 @@ constructor(private profileService: ProfileService) {}
       this.name=this.users[0].name;
       this.phnumber=this.users[0].phone;
     }
+    
   }
-   scrollToCategory(category: string) {
+  scrollToCategory(category: string) {
     document.getElementById(category)?.scrollIntoView({
       behavior: 'smooth'
     });

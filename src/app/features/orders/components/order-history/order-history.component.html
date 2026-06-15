@@ -1,0 +1,54 @@
+
+<div class="page-header">
+  <div class="page-title">Your Orders</div>
+</div>
+
+<div class="main">
+
+  <div class="order-card" *ngFor="let order of orders">
+
+    <div class="order-img">
+      <img [src]="order.image" [alt]="order.restaurantName">
+    </div>
+
+    <div class="order-details">
+
+      <div class="order-rest">
+        {{ order.restaurantName }}
+      </div>
+
+      <div class="order-items">
+  <ng-container *ngFor="let item of getDisplayItems(order.items)">
+    {{ item.name }} x{{ item.quantity }}
+  </ng-container>
+
+  <span *ngIf="isMobile && order.items.length > 1"></span>
+ </div>
+
+      <div class="order-meta">
+        {{ order.placedAt| timeAgo  }} • {{ order.items.length }} items
+      </div>
+
+    </div>
+
+    <div class="order-right">
+      <div class="order-amount">
+        ₹{{ order.total }}
+      </div>
+
+     <div
+  class="status-badge"
+  [ngClass]="{
+    'status-delivered': order.status?.toLowerCase() === 'delivered',
+    'status-cancelled': order.status?.toLowerCase() === 'cancelled'
+  }">
+  {{ order.status | titlecase }}
+ </div>
+      
+      <button class="reorder-btn">Reorder</button>
+      
+    </div>
+
+  </div>
+
+</div>
