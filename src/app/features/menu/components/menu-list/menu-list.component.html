@@ -35,16 +35,21 @@
         (dec)="menuservice.decrease($event)">
       </app-menu-card>
      </div>
-    
+     <div style="margin-bottom: 22%;"></div>
   </div>
-   <div class="menu-cart">
-        <div *ngIf="cart.length>0" class="cart-summary">
-        <app-cart-summary [id]="cart[0].restaurantId"></app-cart-summary>
-    
-      </div>
-     </div>
-     
-</div>
+  
+  <div class="menu-cart d-none d-md-block" *ngIf="cart.length>0">
+    <div *ngIf="cart.length>0" class="cart-summary">
+    <app-cart-summary [id]="cart[0].restaurantId" [component]="'menu'"></app-cart-summary>
 
+    </div>
+  </div>
+ 
+  <div class="d-block d-md-none" *ngIf="cart.length>0">
+    <app-cart-summary [id]="1" [component]="'menu'" [view]="true"></app-cart-summary>
+  </div>
+
+</div>
+ 
  
       
