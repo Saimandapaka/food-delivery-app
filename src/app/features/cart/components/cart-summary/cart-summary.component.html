@@ -1,4 +1,4 @@
-<div class="card shadow-sm p-3 order-card "*ngIf=" totalitems>0 && !view">
+<div class="card shadow-sm p-3 order-card "*ngIf=" totalitems>0 && !ismobile">
   <h5 class="fw-bold mb-3">Order summary</h5>
 
   <div class="d-flex justify-content-between mb-2">
@@ -14,15 +14,28 @@
   
 
   <div class="d-flex justify-content-between mb-2 text-success fw-medium">
-    <span>Discount ({{discount}}% OFF)</span>
-    <span>-{{(discountamount | currencyFormat)}}</span>
+    <span>Discount</span>
+    <span>{{(discountamount | currencyFormat)}}</span>
   </div>
 
   <div class="d-flex justify-content-between fw-bold fs-6 mb-3">
     <span>Total</span>
     <span>{{finalamount | currencyFormat}}</span>
   </div>
+<div class="coupon-container">
+  <input
+    type="text"
+    [(ngModel)]="couponCode"
+    placeholder="Enter coupon code"
+    class="coupon-input">
 
+  <button
+    class="apply-btn"
+    (click)="applyCoupon()">
+    Apply
+  </button>
+</div>
+{{message}}
   <button class="btn w-100 order-btn">
    Place Order →
     <!-- <span *ngIf="component==='cart'">Place Order →</span>
@@ -34,14 +47,14 @@
   </div>
   
 </div>
-<div class="m-sum"*ngIf="view && component==='cart'">
+<div class="m-sum"*ngIf="ismobile && component==='cart'&&totalitems>0">
         <div class="m-sum-row"><span>Subtotal</span><span>{{totalprice | currencyFormat}}</span></div>
         <div class="m-sum-row"><span>Delivery</span><span>{{deliveryfee | currencyFormat}}</span></div>
         <div class="m-sum-row"><span style="color:#2e7d32;">Discount</span><span style="color:#2e7d32;">{{(discountamount | currencyFormat)}}</span></div>
         <div class="m-sum-row grand"><span>Total</span><span>{{finalamount | currencyFormat}}</span></div>
         <button class="m-place-btn">Place order →</button>
 </div>
-<div class="m-sum" *ngIf="view && component==='menu'" style="margin-right: 50%;">
+<div class="m-sum" *ngIf="ismobile && component==='menu'&& totalitems>0" style="margin-right: 50%; height: 90px;">
   <div class="cart-bar-m" >
         <div class="cart-bar-left">
           <div class="cart-bar-count">{{totalitems}} items added</div>

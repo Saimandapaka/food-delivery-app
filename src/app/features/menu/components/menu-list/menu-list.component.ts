@@ -23,7 +23,6 @@ resId!:number;
   menuItems: any[] = [];
   groupedMenu: { [key: string]: any[] } = {};
   cart: any[] = [];
-
   constructor(private http: HttpClient,public menuservice :MenuService,private cd:ChangeDetectorRef) {}
   activeCategory: string = '';
 
