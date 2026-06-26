@@ -65,6 +65,13 @@ div {
 .order-card{
         display: block;
     }
+    @media(max-width:991px){
+        .order-card{
+             width: 300px;
+  height: 300px;
+  
+        }
+    }
 @media (max-width:768px){
 
     .order-card{
@@ -115,7 +122,7 @@ div {
 .coupon-container{
   display: flex;
   width: 100%;
-  margin-bottom: 12px;
+
 }
 
 .coupon-input{
@@ -126,7 +133,7 @@ div {
   padding: 0 12px;
   border-radius: 8px 0 0 8px;
   outline: none;
-  background-color: #dff0e0;
+  background-color: #fff;
   color: #2e7d32;
   border-radius: 6px;
   font-size: 13px;

@@ -8,6 +8,12 @@ export class CartService {
  private apiUrl = environment.apiUrl;
   
     constructor(private http: HttpClient) {}
+    discounttype:string='';
+    discount:number=0;
+    updatediscount(a:any){
+      this.discount=a
+      return this.discount;
+    }
   getAlloffers() {
       return this.http.get<any[]>(`${this.apiUrl}/offers`);
     }

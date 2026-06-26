@@ -213,12 +213,14 @@
     border-bottom: 1px solid #eee;
     max-width: 100%;
    padding: 10px;
+     margin-bottom: 12px; 
   }
  
 
   .menu-item:last-child {
     border-bottom: none;
   }
+   
   /* LEFT SIDE */
   .left {
     flex: 1;
