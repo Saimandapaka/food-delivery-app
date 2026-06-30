@@ -5,20 +5,23 @@
 <div class="main-container">
     <div class="my-card">
         
-    <div *ngFor="let item of cartItems" class="cart-item">
+    <div *ngFor="let item of cartItems " class="cart-item">
     <app-menu-card [item]="item"
         [cart]="cartItems"
         (add)="menuservice.addToCart($event)"
         (inc)="menuservice.increase($event)"
         (dec)="menuservice.decrease($event)">></app-menu-card>
     </div>
-    <app-address-form></app-address-form>
+    <app-offers [id]="restaurantid"
+     ></app-offers>
+    
+    <div style="margin-top: 5%;"><app-address-form></app-address-form></div>
 </div>
 <div style="height:120px;"></div>
-<div class="d-flex justify-content-center cart-summary">
+<div class="d-flex justify-content-center cart-summary" >
      <app-cart-summary [id]="cartItems[0].restaurantId"
-     [component]="cval"
-     [view]="ismobile"></app-cart-summary>
+     [component]="cval"></app-cart-summary>
+     
 </div>
 </div>
 </div>

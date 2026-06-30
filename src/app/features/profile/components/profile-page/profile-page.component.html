@@ -2,7 +2,7 @@
     <div class="py-4 d-flex justify-content-flex-start m-3">
 
   <div 
-    class=" border rounded-3 p-4 w-100" 
+    class=" border rounded-3 p-4 w-100 profile-sidebar" 
     style="max-width: 250px;background: white;
     border-radius: 8px;
     border: 1px solid #eee;
@@ -12,7 +12,7 @@
   >
 
     
-    <div class="text-center stick" >
+    <div class="text-center " >
 
       <div 
         class="char"
@@ -27,7 +27,7 @@
       <div
       class="nav-link menu-link  py-2 px-2"
             [class.active]="selected === 1"
-  (click)="selected = 1">
+  (click)="selected = 1" (click)=" scrollToCategory('profile')">
       <span>👤</span>
       <span class="nav-link-text"
       >Personal info</span>
@@ -66,7 +66,9 @@
   
   <div class="profile-info w-100" >
     
-  <app-profile-info></app-profile-info>
+ <div id="profile">
+     <app-profile-info></app-profile-info>
+ </div>
   <div id="address">
     <app-address-form></app-address-form>
   </div>
@@ -137,13 +139,3 @@
       </div>
       
  </div>
-
-
-
-  
-
-  
-      
-
- 
-

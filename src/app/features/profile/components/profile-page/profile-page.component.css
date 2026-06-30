@@ -1,7 +1,7 @@
-.stick{
-  position:sticky;
-  bottom: 10px;
-  
+.profile-sidebar {
+  position: sticky;
+  top: 0px;
+  align-self: flex-start;
 }
 
   .menu-link.active{

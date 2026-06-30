@@ -32,7 +32,7 @@
     margin-bottom: 5px;
 }
 
-user agent stylesheet
+
 div {
     display: block;
     unicode-bidi: isolate;
@@ -65,6 +65,13 @@ div {
 .order-card{
         display: block;
     }
+    @media(max-width:991px){
+        .order-card{
+             width: 300px;
+  height: 300px;
+  
+        }
+    }
 @media (max-width:768px){
 
     .order-card{
@@ -86,7 +93,7 @@ div {
     bottom: 0;
     left: 0;
     width: 95%;
-    background: #FF5722;
+    background-color: #FF5722;
     margin: 10px;
     border-radius: 8px;
     padding: 10px 14px;
@@ -111,4 +118,42 @@ div {
      background: #FF5722;
      border-style: none;
      color: white;
+}
+.coupon-container{
+  display: flex;
+  width: 100%;
+
+}
+
+.coupon-input{
+  flex: 1;
+  height: 38px;
+  border: 1px solid #ccc;
+  border-right: none;
+  padding: 0 12px;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  background-color: #fff;
+  color: #2e7d32;
+  border-radius: 6px;
+  font-size: 13px;
+  border-radius: 8px;
+  margin-right: 2%;
+}
+
+.apply-btn{
+  width: 90px;
+  height: 38px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  background-color: #FF5722;
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.back{
+    background-color: black;
 }

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '@features/profile/services/profile.service';
 import { ProfileInfoComponent } from '../profile-info/profile-info.component';
-import{AddressFormComponent} from '../address-form/address-form.component';
+import { AddressFormComponent } from '../address-form/address-form.component';
+import { CartSummaryComponent } from '@features/cart/components/cart-summary/cart-summary.component';
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [ProfileInfoComponent, AddressFormComponent],
+  imports: [ProfileInfoComponent,AddressFormComponent,CartSummaryComponent],
+
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
 }) 
