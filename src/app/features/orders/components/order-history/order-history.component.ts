@@ -1,45 +1,76 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
+import { OrderService } from '../../services/order.service';
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.css'
 })
 export class OrderHistoryComponent {
- orders:any[]=[];
- restaurant:any[]=[];
-  constructor(private http: HttpClient) {}
+  
+  orders: any[] = [];
   isMobile = window.innerWidth <= 768;
 
-getDisplayItems(items: any[]): any[] {
-  return items.slice(0, this.isMobile ? 1 : items.length);
-}
-ngOnInit() {
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
 
-  forkJoin({
-    orders: this.http.get<any[]>('http://localhost:3000/orders'),
-    restaurants: this.http.get<any[]>('http://localhost:3000/restaurants')
-  }).subscribe(({ orders, restaurants }) => {
+  constructor(
 
-   this.orders = orders.map(order => {
+    private router: Router,
+    private orderService: OrderService
+  ) {}
 
-  const restaurant = restaurants.find(
-    r => Number(r.id) === Number(order.restaurantId)
-  );
+  goToOrderDetails(order: any) {
+    this.router.navigate(['/orders', order.id]);
+  }
 
-  return {
-    ...order,
-    restaurantName: restaurant?.name,
-    image: restaurant?.image
-  };
+  getDisplayItems(items: any[]): any[] {
+    return items.slice(0, this.isMobile ? 1 : items.length);
+  }
 
-});
-    console.log(restaurants);
-console.log(orders);
+  // Load orders from API
+  loadOrders() {
 
-  });
+  this.orderService.getOrders()
+    .subscribe(({ orders, restaurants }) => {
+      this.orders = orders
 
-}
+        .map(order => {
+
+         
+
+          const restaurant = restaurants.find(
+            r => Number(r.id) === Number(order.restaurantId)
+          );
+
+          return {
+            ...order,
+            restaurantName: restaurant?.name,
+            image: restaurant?.image
+          };
+        })
+
+        // Show order only after placedAt time is reached
+        .filter(order =>
+          new Date() >= new Date(order.placedAt)
+        );
+
+    });
+  }
+
+  ngOnInit() {
+
+    // Initial load
+    this.loadOrders();
+
+    // Check every second whether any future order
+    // should now become visible
+    setInterval(() => {
+      this.loadOrders();
+    }, 1000);
+
+  }
 }
