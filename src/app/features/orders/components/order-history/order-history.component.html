@@ -5,7 +5,11 @@
 
 <div class="main">
 
-  <div class="order-card" *ngFor="let order of orders">
+  <div class="order-card" *ngFor="let order of orders"  
+    (click)="goToOrderDetails(order)"
+      [style.cursor]="order.status?.toLowerCase() !== 'delivered'
+    ? 'pointer'
+    : 'default'">
 
     <div class="order-img">
       <img [src]="order.image" [alt]="order.restaurantName">
@@ -18,12 +22,18 @@
       </div>
 
       <div class="order-items">
-  <ng-container *ngFor="let item of getDisplayItems(order.items)">
-    {{ item.name }} x{{ item.quantity }}
+
+  <ng-container *ngIf="isMobile; else desktopView">
+    {{ order.items[0]?.name }} x{{ order.items[0]?.quantity }}
   </ng-container>
 
-  <span *ngIf="isMobile && order.items.length > 1"></span>
- </div>
+  <ng-template #desktopView>
+    <ng-container *ngFor="let item of order.items">
+      {{ item.name }} x{{ item.quantity }}
+    </ng-container>
+  </ng-template>
+
+</div>
 
       <div class="order-meta">
         {{ order.placedAt| timeAgo  }} • {{ order.items.length }} items
@@ -40,15 +50,23 @@
   class="status-badge"
   [ngClass]="{
     'status-delivered': order.status?.toLowerCase() === 'delivered',
-    'status-cancelled': order.status?.toLowerCase() === 'cancelled'
+    'status-cancelled': order.status?.toLowerCase() === 'cancelled',
+    'status-placed': order.status?.toLowerCase() === 'placed',
+    'status-confirmed': order.status?.toLowerCase() === 'confirmed',
+    'status-preparing': order.status?.toLowerCase() === 'preparing',
+    'status-out-for-delivery': order.status?.toLowerCase() === 'out_for_delivery'
   }">
   {{ order.status | titlecase }}
  </div>
       
-      <button class="reorder-btn">Reorder</button>
+      <button class="reorder-btn"  *ngIf="
+    order.status === 'delivered' ||
+    order.status === 'cancelled'
+  ">Reorder</button>
       
     </div>
 
   </div>
+  
 
 </div>

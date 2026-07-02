@@ -9,7 +9,7 @@ import { MenuService } from '@features/menu/services/menu.service';
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
 
-  // styleUrls: ['./menu-list.component.css']
+  
 
   styleUrl: './menu-list.component.css',
   

@@ -1,0 +1,213 @@
+<div *ngIf="order">
+
+  <!-- Header -->
+  <div
+    class="phdr-d"
+    style="display:flex;justify-content:space-between;align-items:center;">
+
+    <span>
+      ← Order #QB2024041200{{ order.id }}
+    </span>
+
+    <span
+      class="status-badge"
+      [ngClass]="{
+        's-delivered': getCurrentStatus() === 'delivered',
+        's-cancelled': getCurrentStatus() === 'cancelled',
+        's-placed': getCurrentStatus() === 'placed',
+        's-confirmed': getCurrentStatus() === 'confirmed',
+        's-preparing': getCurrentStatus() === 'preparing',
+        's-out': getCurrentStatus() === 'out_for_delivery'
+      }">
+
+      {{ order.status | titlecase }}
+
+    </span>
+
+  </div>
+
+  <!-- Main Layout -->
+  <div class="od-layout">
+
+    <div class="left-side">
+
+      <!-- Timeline Card -->
+      <div class="sc-card">
+
+        <div class="sc-title order-header">
+          <span>Order Status</span>
+
+         
+
+        </div>
+
+        <!-- Order Info -->
+        <div class="order-meta-row">
+
+          <div class="om-item">
+            <div class="om-label">Ordered on</div>
+            <div class="om-val">
+              {{ order.placedAt | date:'dd/MM/yyyy h:mm a' }}
+            </div>
+          </div>
+
+          <div class="om-item">
+            <div class="om-label">
+              {{ order.status === 'cancelled' ? 'Cancelled at' : 'Delivered at' }}
+            </div>
+
+            <div class="om-val">
+
+              {{
+                order.status === 'cancelled'
+                  ? (getCancelledTime() | date:'dd MMM yyyy, h:mm a')
+                  : (order.deliveredAt
+                      ? (order.deliveredAt | date:'dd MMM yyyy, h:mm a')
+                      : '-')
+              }}
+
+            </div>
+
+          </div>
+
+          <div class="om-item">
+
+            <div class="om-label">From</div>
+
+            <div class="om-val">
+              {{ order.restaurantName }}
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Timeline -->
+        <div class="track-steps">
+
+          <div
+            class="step"
+            *ngFor="let step of order.timeline; let last = last">
+
+            <div class="step-left">
+
+              <div
+                class="step-dot"
+                [class.done]="step.time && isStepCompleted(step.time)"
+                [class.cancelled]="order.status === 'cancelled'">
+              </div>
+
+              <div
+                *ngIf="!last"
+                class="step-line"
+                [class.done]="step.time && isStepCompleted(step.time)"
+                [class.cancelled]="order.status === 'cancelled'">
+              </div>
+
+            </div>
+
+            <div class="step-info">
+
+              <div class="step-title">
+                {{ step.label }}
+              </div>
+
+              <div class="step-time">
+
+                {{
+                  step.time
+                    ? (step.time | date:'h:mm a')
+                    : 'Pending'
+                }}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Cancel Card -->
+      <div class="card" *ngIf="getCurrentStatus() == 'placed'" >
+
+        <div class="card-title">
+          Cancel Order
+        </div>
+
+        <div class="cancel-zone">
+
+          <div class="cancel-timer">
+            ⏱️ Cancellable for 3 more minutes
+          </div>
+
+          <div class="cancel-zone-title">
+            Changed your mind?
+          </div>
+
+          <div class="cancel-zone-sub">
+            You can still cancel this order free of charge since the restaurant hasn't started preparing your food extensively.
+            A full refund will be processed if cancelled now.
+          </div>
+
+          <button
+            class="cancel-btn"
+            
+            (click)="cancelOrder()">
+
+            Cancel Order
+
+          </button>
+
+        </div>
+
+      </div>
+      <div class="card "  *ngIf="getCurrentStatus() !== 'placed' &&  getCurrentStatus() !== 'cancelled'">
+            <div class="card-title">Cancel order</div>
+            <div class="nocancel-zone">
+              <div class="nocancel-icon">🚫</div>
+              <div class="nocancel-text">
+                <div class="nocancel-title">This order can no longer be cancelled</div>
+                <div class="nocancel-sub">Your order is already out for delivery and will arrive soon. If there's an issue with your order, please contact our support team.</div>
+                <div class="support-link">💬 Contact support →</div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    
+
+    <div class="sum-side"  *ngIf="order.status !== 'cancelled'">
+
+      <div class="sc-title">  Delivered into </div>
+      <div class="addr-box">
+        <div class="addr-type">Home</div>
+        <div class="addr-txt">{{ order.address }}</div>
+
+      </div>
+
+      <div *ngIf="order.status === 'delivered'" style="margin-top:14px;">
+       <div class="sc-title">Payment</div>
+
+        <div style="font-size:12px;color:#555;">Paid {{ order.paymentMethod }}<strong>₹{{ order.total }}</strong></div>
+          <button class="reorder-big">Reorder this</button>
+
+      </div>
+     
+    </div>
+     <div class="side-card" *ngIf="order.status === 'cancelled'">
+      <div class="card-title">Order again?</div>
+
+        <div style="font-size:12px;color:#757575;margin-bottom:14px;line-height:1.6;">
+          Add the same items to your cart and reorder from   {{ order.restaurantName }} in one click.
+        </div>
+        <button class="reorder-btn-d">Reorder these items </button>
+     </div>
+
+
+  </div>
+
+</div>
