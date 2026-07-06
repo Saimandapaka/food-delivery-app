@@ -140,7 +140,7 @@
         <div class="cancel-zone">
 
           <div class="cancel-timer">
-            ⏱️ Cancellable for 3 more minutes
+            ⏱️ Cancellable for 4 more minutes
           </div>
 
           <div class="cancel-zone-title">
@@ -152,15 +152,74 @@
             A full refund will be processed if cancelled now.
           </div>
 
-          <button
-            class="cancel-btn"
-            
-            (click)="cancelOrder()">
+          <!-- Cancel Order Button -->
+           <button class="cancel-btn" (click)="showCancelPopup = true">Cancel Order</button>
 
-            Cancel Order
+            <!-- Cancel Order Popup -->
+           <div class="modal-overlay" *ngIf="showCancelPopup">
+             <div class="modal-box">
+               <div class="sheet-handle"></div>
+             <div class="modal-header">
+                 <div class="modal-icon">⚠️</div>
+                 <div class="modal-title">Cancel this order?</div>
+              </div>
+             <div class="modal-sub">
 
-          </button>
+                 <ng-container *ngIf="!isMobile; else mobileText">
+                   Your food is being prepared. Let us know why you're cancelling — this helps us improve.
+                  </ng-container>
 
+                  <ng-template #mobileText>Let us know why you're cancelling (optional). </ng-template>
+
+              </div>
+             <div class="reason-label">Select a reason (optional) </div>
+             <label class="reason-option">
+                <input type="radio" name="reason" value="Changed my mind" (change)="selectedReason='Changed my mind'">
+                <span>Changed my mind</span>
+             </label>
+
+              <label class="reason-option">
+                <input type="radio" name="reason" value="Ordered by mistake" (change)="selectedReason='Ordered by mistake'">
+                <span>Ordered by mistake</span>
+              </label>
+
+              <label class="reason-option">
+                <input type="radio" name="reason" value="Delivery taking too long" (change)="selectedReason='Delivery taking too long'">
+                <span>Delivery taking too long</span>
+              </label>
+
+               <label class="reason-option">
+                 <input type="radio" name="reason" value="Found a better price elsewhere" (change)="selectedReason='Found a better price elsewhere'">
+                 <span>Found a better price elsewhere</span>
+               </label>
+
+               <label class="reason-option">
+                  <input type="radio" name="reason" value="Other" (change)="selectedReason='Other'">
+                   <span>Other</span>
+                </label>
+
+                <div class="refund-note">
+
+                 <ng-container *ngIf="!isMobile; else mobileRefund">
+                    💳 A full refund of <strong>₹{{ order.total }}</strong>will be credited to your original payment method within 5–7 business days.
+                  </ng-container>
+
+                  <ng-template #mobileRefund>
+                      💳 Full refund of <strong>₹{{ order.total }}</strong> in 5–7 business days.
+                   </ng-template>
+
+                </div>
+
+                <div class="modal-actions">
+                  <button class="keep-btn" (click)="clearValue()"> Keep my order</button>
+                  <button class="confirm-btn" (click)="confirmCancelOrder()"  [disabled]="!selectedReason"> Yes, cancel order</button>
+
+                </div>
+
+              </div>
+
+            </div>
+             
         </div>
 
       </div>
@@ -169,9 +228,24 @@
             <div class="nocancel-zone">
               <div class="nocancel-icon">🚫</div>
               <div class="nocancel-text">
-                <div class="nocancel-title">This order can no longer be cancelled</div>
-                <div class="nocancel-sub">Your order is already out for delivery and will arrive soon. If there's an issue with your order, please contact our support team.</div>
-                <div class="support-link">💬 Contact support →</div>
+                <ng-container *ngIf="!isMobile; else mobileNoCancel">
+
+                  <div class="nocancel-title">This order can no longer be cancelled</div>
+
+                  <div class="nocancel-sub">
+                     Your order is already out for delivery and will arrive soon.
+                    If there's an issue with your order, please contact our support team.
+                 </div>
+
+                 <div class="support-link">💬 Contact support →</div>
+
+                </ng-container>
+                   <ng-template #mobileNoCancel>
+
+                          <div class="nocancel-title">This order is already out for delivery and can't be cancelled. </div>
+                         <div class="support-link">Contact support →</div>
+
+                      </ng-template>
               </div>
             </div>
           </div>

@@ -41,7 +41,7 @@
     padding-right: 14px;
     padding-bottom: 14px;
     padding-left: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 1px;
     
 }
 .sc-title{
@@ -69,6 +69,12 @@
     font-weight: 700;
     cursor: pointer;
 }
+.cancel-btn:hover {
+  background: #ffe1e1;
+
+}
+
+
 
 
 .left-side{
@@ -129,7 +135,7 @@
     background:#fff;
     border:1px solid #eee;
     border-radius:8px;
-    padding:18px;
+    padding:8px;
 }
 
 .card-title{
@@ -386,6 +392,219 @@
     cursor: pointer;
     width: 100%;
 }
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  height: 100%;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Popup */
+.modal-box {
+    width: 520px;
+    height: fit-content;
+    background: #fff;
+    /* transform: scale(0.8); */
+    border-radius: 25px;
+   padding: 8px 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgb(35, 36, 35);
+    /* margin: auto; */
+    
+}
+
+/* Animation */
+@keyframes popup{
+
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFF3E8;
+    color: #F97316;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+/* Description */
+.modal-sub {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Label */
+.reason-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+
+/* Option */
+.reason-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #E6E6E6;
+  border-radius: 10px;
+  padding: 14px 14px;
+  margin-bottom: 9px;
+  cursor: pointer;
+  transition: .5s;
+  accent-color: #e7532d;
+      height: 40px;
+}
+
+
+.reason-option:hover {
+  border-color: #FF6B35;
+}
+
+/* Selected */
+.reason-option.selected {
+  border: 1px solid #FF6B35;
+  background: #FFF8F5;
+}
+
+/* Radio */
+.reason-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #D6D6D6;
+  border-radius: 50%;
+  position: relative;
+
+}
+
+.reason-radio.selected {
+  border-color: #FF6B35;
+}
+
+.reason-radio.selected::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: #FF6B35;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+/* Refund */
+.refund-note {
+  margin-top: 18px;
+  background: #EEF7FF;
+  color: #1769AA;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.refund-note strong {
+  color: #0059C8;
+}
+
+/* Buttons */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.keep-btn {
+   flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: #f1eeee;
+  color: #4d4545;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.keep-btn:hover {
+  background: #dc2626;
+  color:whitesmoke
+}
+
+.confirm-btn {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: #f1eeee;
+  color: #4d4545;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: #dc2626;
+  color:whitesmoke
+}
 @media (max-width: 768px) {
     .od-layout{
         display:block !important;
@@ -471,6 +690,48 @@
   .support-link {
     font-size: 11px;
   }
+  .modal-overlay{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.45);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .modal-box{
+
+        width:100%;
+        max-width:100%;
+        margin:0;                  /* Override margin:auto */
+        transform:none;            /* Override scale(.8) */
+        border-radius:22px 22px 0 0;
+        padding:20px;
+        animation:slideUp .35s ease forwards;
+    }
+
+     .sheet-handle {
+        width: 50px;
+        height: 5px;
+        background: #d5d5d5;
+        border-radius: 50px;
+        margin: 0 auto 18px;
+    }
+    .modal-sub {
+  
+      margin-bottom: 5px;
+      }
+      .reason-label{
+        display:none;
+      }
+      .card-title{
+        display:none;
+      }
+      .left-side{
+        gap:10px
+      }
+
 
 
 }
