@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import {ActivatedRoute} from '@angular/router';
 import { OrderService } from '../../services/order.service';
+import {HostListener} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
@@ -16,12 +18,19 @@ export class OrderDetailComponent {
 
   // Used to clear the timer
   intervalId: any;
+  selectedReason: string = '';
 
   constructor(
    
     private route: ActivatedRoute,
     private orderService: OrderService
   ) {}
+  isMobile = window.innerWidth <= 768;
+
+@HostListener('window:resize')
+onResize() {
+  this.isMobile = window.innerWidth <= 768;
+}
 
   ngOnInit() {
 
@@ -94,7 +103,20 @@ if (order.status !== 'cancelled') {
   return this.order.timeline?.[1]?.time || null;
 
 }
+showCancelPopup = false;
+
 cancelOrder(){
+  this.showCancelPopup = true;
+}
+clearValue() {
+ this.showCancelPopup = false;
+  this.selectedReason = '';
+}
+
+confirmCancelOrder() {
+   
+  this.selectedReason = '';
+  
   this.order.status = 'cancelled';
   this.order.timeline=[
     {

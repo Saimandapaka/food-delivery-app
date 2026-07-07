@@ -988,21 +988,21 @@
       "taxes": 14,
       "discount": 0,
       "total": 284,
-      "status": "delivered",
+      "status": "cancelled",
       "paymentMethod": "online",
       "address": "Level 3, Cyber Towers, Madhapur, Hyderabad",
-      "placedAt": "2026-06-29T16:30:00",
-      "deliveredAt": "2026-06-30T10:59:10.400Z",
+      "placedAt": "2026-07-06T14:32:00",
+      "deliveredAt": null,
       "timeline": [
         {
           "status": "placed",
           "label": "Order placed",
-          "time": "2026-06-29T16:30:00"
+          "time": "2026-07-06T14:32:00"
         },
         {
           "status": "cancelled",
           "label": "Order cancelled",
-          "time": "2026-06-29T17:23:00"
+          "time": "2026-07-06T09:14:28.681Z"
         }
       ],
       "cancelledAt": null
@@ -1031,21 +1031,21 @@
       "taxes": 27,
       "discount": 0,
       "total": 597,
-      "status": "delivered",
+      "status": "placed",
       "paymentMethod": "online",
       "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
-      "placedAt": "2026-06-30 22:56:00",
-      "deliveredAt": "2026-07-01T08:36:14.253Z",
+      "placedAt": "2026-07-06T19:30:00",
+      "deliveredAt": null,
       "timeline": [
         {
           "status": "placed",
           "label": "Order placed",
-          "time": "2026-06-30 22:56:00"
+          "time": "2026-07-06T19:30:00"
         },
         {
           "status": "cancelled",
           "label": "Order cancelled",
-          "time": "2026-06-30T17:28:31.093Z"
+          "time": "2026-07-06T14:02:34.513Z"
         }
       ],
       "cancelledAt": null

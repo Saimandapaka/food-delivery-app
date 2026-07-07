@@ -42,30 +42,30 @@ getTimeline(placedAt: string, status: string ) {
     },
     {
       status: 'confirmed',
-      label: 'Order Confirmed',
+      label: 'Order Confirmed by Restaurant',
       time: new Date(
-        placed.getTime() + 3 * 60000
+        placed.getTime() + 14 * 60000
       ).toISOString()
     },
     {
       status: 'preparing',
-      label: 'Preparing Food',
+      label: 'Food being prepared',
       time: new Date(
-        placed.getTime() + 6 * 60000
+        placed.getTime() + 15 * 60000
       ).toISOString()
     },
     {
       status: 'out_for_delivery',
       label: 'Out for Delivery',
       time: new Date(
-        placed.getTime() + 7 * 60000
+        placed.getTime() + 16 * 60000
       ).toISOString()
     },
     {
       status: 'delivered',
       label: 'Delivered',
       time: new Date(
-        placed.getTime() + 8 * 60000
+        placed.getTime() + 17 * 60000
       ).toISOString()
     }
   ];
