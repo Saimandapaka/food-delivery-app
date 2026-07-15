@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import{NotificationsService} from '@features/notifications/services/notifications.service';
 import { Notification } from '@features/notifications/models/notification';
 @Component({
   selector: 'app-notification-list',
@@ -7,58 +7,85 @@ import { Notification } from '@features/notifications/models/notification';
   styleUrl: './notification-list.component.css'
 })
 export class NotificationListComponent {
+   // Stores all notifications
   notifications: Notification[] = [];
+
+  // Stores filtered notifications (All, Orders, Offers...)
   filteredNotifications: Notification[] = [];
-  selectedFilter = 'all'; 
-   filters = [
+
+  // Default selected filter
+  selectedFilter = 'all';
+
+  // Filter buttons
+  filters = [
     { label: 'All', value: 'all' },
     { label: 'Orders', value: 'orders' },
     { label: 'Offers', value: 'offers' },
     { label: 'Updates', value: 'updates' }
   ];
-     constructor(private http: HttpClient) {}
+
+  // Inject Notification Service
+  constructor(
+    private notificationService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
-    this.loadNotifications();
-  }
-  // api calling 
-  loadNotifications(): void {
-    this.http.get<any[]>('http://localhost:3000/notifications')
+
+    // Load notifications from API
+    this.notificationService.loadNotifications();
+
+    // Subscribe to notifications from the service
+    this.notificationService.notifications$
       .subscribe(data => {
+
+        // Store all notifications
         this.notifications = data;
-        this.filteredNotifications = data;
+
+        // Apply current filter
+        this.applyFilter(this.selectedFilter);
+
       });
+
   }
-  // unread notifications with length 
+
+  // Number of unread notifications
   get unreadCount(): number {
-  return this.notifications.filter(n => !n.isRead).length;
-}
-//  single notification
- markSingleAsRead(id: number): void {
-  this.notifications = this.notifications.map(n =>
-    n.id === id ? { ...n, isRead: true } : n
-  );
 
-  this.applyFilter(this.selectedFilter);
-}
+    return this.notificationService.getUnreadCount();
+
+  }
+
+  // Mark one notification as read
+  markSingleAsRead(id: number): void {
+
+    this.notificationService.markSingleAsRead(id);
+
+  }
+
+  // Mark all notifications as read
   markAllAsRead(): void {
-  this.notifications = this.notifications.map(n => ({
-    ...n,
-    isRead: true
-  }));
 
-  this.applyFilter(this.selectedFilter);
-}
-//  filter logic for orders offers and updates
+    this.notificationService.markAllAsRead();
+
+  }
+
+  // Filter notifications
   applyFilter(filter: string): void {
+
     this.selectedFilter = filter;
 
     if (filter === 'all') {
+
       this.filteredNotifications = this.notifications;
+
     } else {
-      this.filteredNotifications = this.notifications.filter(
-        n => n.type === filter
-      );
+
+      this.filteredNotifications =
+        this.notifications.filter(
+          n => n.type === filter
+        );
+
     }
+
   }
 }

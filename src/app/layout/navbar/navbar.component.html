@@ -63,3 +63,76 @@
   </div>
 
 </nav>
+<nav>
+  <div class="mobile-home-navbar" *ngIf="isHomePage()">
+  <div class="mobile-header">
+    <div class="mobile-left">
+      <div class="mobile-logo" (click)="navigateTo('/home')"> QuickBite</div>
+       <div class="mobile-location">
+         <span class="location-icon">📍</span>
+         <span class="location-text">Banjara Hills, Hyderabad</span>
+         <span class="location-arrow">▾</span>
+       </div>
+     </div>
+
+     <div class="mobile-icons">
+      <div class="icon" (click)="navigateTo('/notifications')">🔔   
+        <span class="badge" *ngIf="notificationCount>0"> {{notificationCount}}</span>
+      </div>
+      <div class="icon" (click)="navigateTo('/orders')">📦</div>
+      <div class="icon" (click)="navigateTo('/profile')">👤</div>
+      <div class="icon" (click)="navigateTo('/cart')">🛒
+        <span class="badge" *ngIf="cartCount>0"> {{cartCount}}</span>
+      </div>
+   </div>
+  </div>
+</div>
+
+</nav>
+
+<!-- MOBILE RESTAURANT NAVBAR -->
+
+<nav class="mobile-restaurant-navbar" *ngIf="isRestaurantsPage()">
+     <!-- Back Button -->
+      <button class="back-btn" (click)="navigateTo('/home')">←</button>
+      <!-- Restaurant Name -->
+
+     <div class="restaurant-title"> {{ restaurantName }} </div>
+       <!-- Right Icons -->
+       <div class="restaurant-actions"> 
+        <button class="icon-btn cart-btn" (click)="navigateTo('/cart')"> 🛒
+          <span class="cart-badge" *ngIf="cartCount>0">{{cartCount}} </span>
+        </button>
+    </div>
+</nav>
+<nav class="mobile-cart-navbar" *ngIf="isCartPage()">
+  <button class="back-btn" (click)="navigateTo('/home')">←</button>
+  <div class="cart-title">Your cart</div>
+</nav>
+<!-- MOBILE ORDERS NAVBAR -->
+
+<nav class="mobile-cart-navbar" *ngIf="isOrdersPage()">
+    <button class="back-btn" (click)="navigateTo('/home')">← </button>
+  <div class="cart-title"> Your orders</div>
+</nav>
+<!-- MOBILE NOTIFICATIONS NAVBAR -->
+
+<nav class="mobile-cart-navbar" *ngIf="isNotificationsPage()">
+  <button class="back-btn" (click)="navigateTo('/home')">← </button>
+  <div class="cart-title">Notifications</div>
+  <span class="notification-badge" *ngIf="notificationCount > 0">{{ notificationCount }} new    </span>
+</nav>
+
+
+<!-- MOBILE ORDER DETAILS NAVBAR -->
+
+<nav class="mobile-order-navbar" *ngIf="isOrderDetailsPage()" >
+    <button class="back-btn" (click)="navigateTo('/orders')" >← </button>
+    <div class="order-title"> Order #QB2024041200{{ orderId }} </div>
+    <span class="status-badge" style="margin-left: auto;" [ngClass]="orderStatus"> {{ orderStatus }}</span>
+</nav>
+<!-- MOBILE PROFILE NAVBAR -->
+
+<nav class="mobile-cart-navbar" *ngIf="isProfilePage()">
+  <button class="back-btn" (click)="navigateTo('/home')"> ← </button> 
+</nav>

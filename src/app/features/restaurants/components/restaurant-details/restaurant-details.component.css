@@ -135,16 +135,37 @@
 }
  
 
-.breadcrumb-nav a {
-  color: grey;   
-  text-decoration: none;
-  font-weight: 400;
-  padding-left:10px ;
+/* Needed to position breadcrumb over image */
+.banner{
+    position: relative;
 }
 
-.res-name{
-  color: #ff5722;
-  font-weight:400;
+.breadcrumb-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;          /* Increase width as needed */
+  padding: 9px 5px;
+  /* Transparent black gradient */
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25)
+  );
+}
+
+.breadcrumb-nav a,
+.breadcrumb-nav .sep,
+.breadcrumb-nav .res-name {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
 }
 .banner {
   width: 100%;

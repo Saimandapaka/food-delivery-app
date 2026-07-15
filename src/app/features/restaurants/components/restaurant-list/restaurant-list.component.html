@@ -1,5 +1,16 @@
 <div class="page">
 
+ <div class="nav-center">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        placeholder="Search for restaurants or food..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
   <!-- LOADING STATE -->
   <div class="skeleton-grid" *ngIf="isLoading">
     <div class="skeleton-card" *ngFor="let item of [1,2,3,4,6,8]">
