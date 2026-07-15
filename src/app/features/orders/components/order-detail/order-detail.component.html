@@ -1,11 +1,12 @@
-<div *ngIf="order">
+<div *ngIf="order" >
 
   <!-- Header -->
-  <div
+   <div class="t">
+        <div
     class="phdr-d"
     style="display:flex;justify-content:space-between;align-items:center;">
 
-    <span>
+    <span class="idno">
       ← Order #QB2024041200{{ order.id }}
     </span>
 
@@ -25,6 +26,8 @@
     </span>
 
   </div>
+   </div>
+  
 
   <!-- Main Layout -->
   <div class="od-layout">
@@ -250,32 +253,31 @@
             </div>
           </div>
 
-    </div>
+     </div>
 
     
+     <div class="sum-side"  *ngIf="order.status !== 'cancelled'">
+       <div class="sc-title">  Delivered into </div>
+         <div class="addr-box">
+           <div class="addr-type">Home</div>
+           <div class="addr-txt">{{ order.address }}</div>
+         </div>
 
-    <div class="sum-side"  *ngIf="order.status !== 'cancelled'">
+       <div *ngIf="order.status === 'delivered'" style="margin-top:14px;">
+          <div class="sc-title">Payment</div>
 
-      <div class="sc-title">  Delivered into </div>
-      <div class="addr-box">
-        <div class="addr-type">Home</div>
-        <div class="addr-txt">{{ order.address }}</div>
+           <div class="payment-info">
+             <div style="font-size:12px;color:#555;">Paid {{ order.paymentMethod }}<strong>₹{{ order.total }}</strong></div>
+           </div>
+           <button class="reorder-big">Reorder this </button>
 
-      </div>
-
-      <div *ngIf="order.status === 'delivered'" style="margin-top:14px;">
-       <div class="sc-title">Payment</div>
-
-        <div style="font-size:12px;color:#555;">Paid {{ order.paymentMethod }}<strong>₹{{ order.total }}</strong></div>
-          <button class="reorder-big">Reorder this</button>
-
-      </div>
+        </div>
+     </div>
      
-    </div>
      <div class="side-card" *ngIf="order.status === 'cancelled'">
       <div class="card-title">Order again?</div>
 
-        <div style="font-size:12px;color:#757575;margin-bottom:14px;line-height:1.6;">
+        <div class="cancel-text"style="font-size:12px;color:#757575;margin-bottom:14px;line-height:1.6;">
           Add the same items to your cart and reorder from   {{ order.restaurantName }} in one click.
         </div>
         <button class="reorder-btn-d">Reorder these items </button>

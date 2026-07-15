@@ -154,6 +154,9 @@
         max-width: 90px; 
 
   }
+  .page-header{
+    display:none;
+  }
   .main {
     padding: 12px 8px;
   }

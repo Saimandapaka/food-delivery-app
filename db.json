@@ -991,18 +991,18 @@
       "status": "cancelled",
       "paymentMethod": "online",
       "address": "Level 3, Cyber Towers, Madhapur, Hyderabad",
-      "placedAt": "2026-07-06T14:32:00",
+      "placedAt": "2026-07-07T17:16:00",
       "deliveredAt": null,
       "timeline": [
         {
           "status": "placed",
           "label": "Order placed",
-          "time": "2026-07-06T14:32:00"
+          "time": "2026-07-07T17:16:00"
         },
         {
           "status": "cancelled",
           "label": "Order cancelled",
-          "time": "2026-07-06T09:14:28.681Z"
+          "time": "2026-07-07T11:46:19.139Z"
         }
       ],
       "cancelledAt": null
@@ -1031,11 +1031,11 @@
       "taxes": 27,
       "discount": 0,
       "total": 597,
-      "status": "placed",
+      "status": "delivered",
       "paymentMethod": "online",
       "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
       "placedAt": "2026-07-06T19:30:00",
-      "deliveredAt": null,
+      "deliveredAt": "2026-07-07T10:30:25.301Z",
       "timeline": [
         {
           "status": "placed",

@@ -13,6 +13,7 @@ cart$ = this.cartSubject.asObservable();
   }
 
   addToCart(item: any) {
+    // create the new array with the existing cart items-->copy cart
   const cart = [...this.cart];
 
   const index = cart.findIndex(i => i.id === item.id);
@@ -22,7 +23,9 @@ cart$ = this.cartSubject.asObservable();
       ...cart[index],
       quantity: cart[index].quantity + 1
     };
-  } else {
+  }
+  // if the item is not in the cart, add it with quantity 1
+   else {
     cart.push({ ...item, id: item.id, quantity: 1 });
   }
 

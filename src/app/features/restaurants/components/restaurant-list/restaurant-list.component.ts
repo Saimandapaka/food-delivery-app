@@ -83,6 +83,8 @@ export class RestaurantListComponent implements OnInit {
   }
   openRestaurant(restaurant: any) {
   this.restaurantService.setSelectedRestaurant(restaurant);
+
+
   this.router.navigate(['/restaurants', restaurant.id]);
 }
 

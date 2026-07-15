@@ -731,7 +731,28 @@
       .left-side{
         gap:10px
       }
-
-
+      .sc-title{
+        display:none;
+      }
+      .addr-box{
+        display:none;
+      }
+      .payment-info{
+        display:none
+      }
+      .cancel-text{
+        display:none;
+      }
+      .status-badge{
+        display:none;
+      }
+      .idno{
+        display:none;
+      }.phdr-d{
+        display:none
+      }
+      .t{
+        display:none;
+      }
 
 }

@@ -56,8 +56,8 @@
         margin-right: 0;
     }
 
-    .cart-header h3{
-        font-size: 22px;
+    .cart-header {
+        display:none
     }
 } 
 .desktop-frame {

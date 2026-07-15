@@ -3,19 +3,17 @@
   class="page"
   *ngIf="(activeTab === 'menu' || isDesktop) && restaurant">
   
-  <!-- Breadcrumb -->
-  <div class="top-bar">
-    <nav class="breadcrumb-nav">
-      <a routerLink="/">Home</a>
-      <span class="sep">></span>
-      <span class="res-name">{{ restaurant.name }}</span>
-    </nav>
-  </div>
-
-  <!-- Banner -->
   <div class="banner">
-    <img [src]="restaurant.image" [alt]="restaurant.name">
-  </div>
+
+  <img [src]="restaurant.image" [alt]="restaurant.name">
+
+  <nav class="breadcrumb-nav">
+    <a routerLink="/home">Home</a>
+    <span class="sep">></span>
+    <span class="res-name">{{ restaurant.name }}</span>
+  </nav>
+
+</div>
 
   <!-- Restaurant Card -->
   <div class="restaurant-card">

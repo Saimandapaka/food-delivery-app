@@ -21,6 +21,7 @@
   font-weight: 700;
   white-space: nowrap;
   flex-shrink: 0; /* prevents shrinking */
+  margin-left: auto;
 }
  
 .notify-layout{
@@ -93,4 +94,7 @@
  .mark-all {
     display: none;
   }
+  .notifications{
+    display:none;
+}
 }
