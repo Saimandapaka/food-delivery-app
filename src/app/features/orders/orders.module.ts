@@ -15,6 +15,7 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     OrdersRoutingModule,
     TimeAgoPipe
 
-  ]
+  ],
+  exports: [OrderHistoryComponent]
 })
 export class OrdersModule { }

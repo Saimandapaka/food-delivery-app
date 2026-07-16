@@ -6,7 +6,8 @@
       "email": "arjun@gmail.com",
       "phone": "9876543210",
       "password": "password123",
-      "avatar": ""
+      "avatar": "",
+      "dob": "14/07/2001"
     }
   ],
   "restaurants": [
@@ -1035,7 +1036,9 @@
       "paymentMethod": "online",
       "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
       "placedAt": "2026-07-06T19:30:00",
+
       "deliveredAt": "2026-07-07T10:30:25.301Z",
+
       "timeline": [
         {
           "status": "placed",
@@ -1056,17 +1059,23 @@
       "id": "1",
       "userId": 1,
       "type": "Home",
-      "addressLine": "Flat 4B, Prestige Towers",
+      "addressLine": "Flat 4B",
+      "building": "Prestige Towers",
       "area": "Banjara Hills",
       "city": "Hyderabad",
       "pincode": "500034",
-      "isDefault": true
+      "isDefault": true,
+      "name": "arjun",
+      "phnumber": "987",
+      "email": "arjun@gmail.com",
+      "dob": "14/07/2001"
     },
     {
       "id": "2",
       "userId": 1,
       "type": "Work",
-      "addressLine": "Level 3, Cyber Towers",
+      "addressLine": "Level 3",
+      "building": "Cyber Towers",
       "area": "Madhapur",
       "city": "Hyderabad",
       "pincode": "500081",
