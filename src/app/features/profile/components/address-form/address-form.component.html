@@ -1,5 +1,5 @@
 
-          <div class="card" *ngIf="display===0">
+          <div class="card"  [ngStyle]="issavedaddress ? {'margin':'20px'} : {}" *ngIf="mode==='list'">
   
             <div class="card-hdr">Saved addresses <span class="edit-btn" (click)="add()">+ Add new</span></div>
             <div class="addr-row" *ngFor="let add of address;  let i = index"
@@ -17,7 +17,7 @@
             <div class="add-addr-btn" (click)="add()">+ Add new address</div>
           </div>
           <!-- addnewaddress -->
-  <form #addressForm="ngForm" (ngSubmit)="validation(addressForm)" *ngIf="display===1 || display===2">
+  <form #addressForm="ngForm" (ngSubmit)="validation(addressForm)" *ngIf="mode==='add' || mode==='edit'">
 
 
 <div class="m" style="border-radius: 50px;"  >
@@ -29,20 +29,13 @@
     <div  class="content-card">
         <div>
         <div class="cc-header" *ngIf="!ismobile">
-        <div class="cc-title"><span *ngIf="display===1">Add new Address</span><span *ngIf="display===2">Edit Address</span></div>
-        <div class="cc-action" style="color:#555;" (click)="display=0">
+        <div class="cc-title"><span *ngIf="mode==='add'">Add new Address</span><span *ngIf="mode==='edit'">Edit Address</span></div>
+        <div class="cc-action" style="color:#555;" (click)="changemode()">
             ← Back to addresses
         </div>
     </div>
     
-        <div class="nb-m" *ngIf="ismobile" >
-            <div class="nb-back" (click)="display=0">
-                ←
-            </div>
-            <div class="nb-title-m">
-               <span *ngIf="display===1">Add new Address</span><span *ngIf="display===2">Edit Address</span>
-            </div>
-        </div>
+        
     </div>
         <div style="margin-bottom:16px;">
         <div class="field-label"
@@ -218,18 +211,18 @@
     <div *ngIf="!ismobile">
         
         <button  class="cancel-btn" (click)="deleteAddressedit()">
-           <span *ngIf="display===1">Cancel</span><span *ngIf="display===2">Delete Address</span>
+           <span *ngIf="mode==='add'">Cancel</span><span *ngIf="mode==='edit'">Delete Address</span>
         </button>
 
         <button type="submit" class="save-btn" >
-            <span *ngIf="display===1">Save Address</span><span *ngIf="display===2">Update Address</span>
+            <span *ngIf="mode==='add'">Save Address</span><span *ngIf="mode==='edit'">Update Address</span>
         </button>
         
     </div>
     <div *ngIf="ismobile">
          
-        <button class="m-save-btn" type="submit"><span *ngIf="display===1">Save Address</span><span *ngIf="display===2">Update Address</span>  </button>
-        <button  (click)="deleteAddressedit()" class="mb-btn"><span *ngIf="display===1"  >Cancel</span><span *ngIf="display===2"  >Delete Address</span></button>
+        <button class="m-save-btn" type="submit"><span *ngIf="mode==='add'">Save Address</span><span *ngIf="mode==='edit'">Update Address</span>  </button>
+        <button  (click)="deleteAddressedit()" class="mb-btn"><span *ngIf="mode==='add'"  >Cancel</span><span *ngIf="mode==='edit'"  >Delete Address</span></button>
     </div>
     </div>
 

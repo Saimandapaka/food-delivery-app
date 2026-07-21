@@ -19,7 +19,6 @@ const routes: Routes = [
   {
     path:'savedaddress',component:AddressFormComponent
   },
-  
   {
     path:'orderhistory',component:OrderHistoryComponent
   },

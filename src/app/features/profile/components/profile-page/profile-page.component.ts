@@ -54,6 +54,11 @@ constructor(private profileService: ProfileService, private router:Router) {}
  navigateTo(path: string) {
   this.router.navigate(['/profile', path]);
 }
+navigateToo(path: string) {
+  if(window.innerWidth<=768)
+  this.profileService.from=1;
+  this.router.navigate([path]);
+}
  @HostListener('window:resize')
           onResize() {
             this.checkScreenSize();

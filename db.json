@@ -7,7 +7,7 @@
       "phone": "9876543210",
       "password": "password123",
       "avatar": "",
-      "dob": "14/07/2001"
+      "dob": "20/07/2001"
     }
   ],
   "restaurants": [
@@ -1036,9 +1036,7 @@
       "paymentMethod": "online",
       "address": "Flat 4B, Prestige Towers, Banjara Hills, Hyderabad",
       "placedAt": "2026-07-06T19:30:00",
-
       "deliveredAt": "2026-07-07T10:30:25.301Z",
-
       "timeline": [
         {
           "status": "placed",

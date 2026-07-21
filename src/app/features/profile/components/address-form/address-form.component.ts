@@ -30,13 +30,15 @@ export class AddressFormComponent {
   state!:any;
   pincode!:any;
  selectedtype:number=1;
-  selectedAddressIndex:number=-1;
+  selectedAddressIndex:number=0;
+  mode="list";
   display:number=0;
   editaddress!:any;
  ismobile!:boolean;
+ issavedaddress!:boolean;
  updateid!:number;
 isDefault=false;
-@Output() profiledisplayvalue=new EventEmitter<number>();
+
 
  selectAddress(index:any) {
   this.selectedAddressIndex = index;
@@ -44,6 +46,10 @@ isDefault=false;
  
   
     ngOnInit(): void {
+       this.issavedaddress=this.router.url.startsWith('/profile/savedaddress');
+       this.profileService.mode.subscribe(mode => {
+    this.mode = mode;
+  });
       this.getalladdress();
       this.checkScreenSize();
     }
@@ -53,6 +59,9 @@ isDefault=false;
       }
       checkScreenSize(){
         this.ismobile=window.innerWidth<=768;
+        this.issavedaddress=this.router.url.startsWith('/profile/savedaddress');
+         if(window.innerWidth>768 && this.router.url.includes('/profile'))
+            this.router.navigate(['profile']);
       }
       validation(form: NgForm) {
 
@@ -85,13 +94,13 @@ isDefault=false;
     
         
      
-      if(this.display===1){
+      if(this.mode==='add'){
          this.profileService.postAddress(add).subscribe(() => {
     this.getalladdress();
   });
       }
    
-     if(this.display===2){
+     if(this.mode==='edit'){
        this.profileService.patchAddress(this.updateid,update).subscribe(() => {
     this.getalladdress();
   });
@@ -100,15 +109,17 @@ isDefault=false;
      }
      if(this.isDefault)
         {
-          if(this.display===2)
+          if(this.mode==='edit')
             this.selectedAddressIndex=this.updateid-1;
           else
             this.selectedAddressIndex=this.address.length;
         }
+         this.profileService.mode.next("list");
       this.display=0;
-      this.profiledisplayvalue.emit(0);
+    
 
 }
+
 getalladdress(){
   this.profileService.getAllAddress().subscribe({
         next: (data) => {
@@ -126,12 +137,14 @@ getalladdress(){
      this.street='';
      this.city='';
      this.pincode='';
-  this.display=1;
- this.profiledisplayvalue.emit(1);
+     this.profileService.mode.next("add");
+     this.display=1;
+
  }
    edit(data:any){
+     this.profileService.mode.next("edit");
      this.display=2;
-     this.profiledisplayvalue.emit(2);
+   
      this.type=data.type;
      this.flat=data.addressLine;
      this.building=data.building;
@@ -141,19 +154,23 @@ getalladdress(){
      this.updateid=data.id;  
    }
     deleteAddress(id:any){
-  if(this.display!==1){
+  if(this.mode!=='add'){
     this.profileService.deleteAddress(id).subscribe(() => {
     this.getalladdress();
   });
   }
 }
 deleteAddressedit(){
-  if(this.display===1)
+  if(this.mode==='add')
    {
+     this.profileService.mode.next("list");
     this.display=0;
-    this.profiledisplayvalue.emit(0);
+    
    }
   else
     this.deleteAddress(this.updateid);
+}
+changemode(){
+  this.profileService.mode.next("list");
 }
 }

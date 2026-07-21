@@ -130,9 +130,7 @@
     margin-bottom: 16px;
 }
 @media (max-width: 768px) {
-    .card{
-        margin: 20px;
-    }
+   
   .form-grid {
     grid-template-columns: 1fr;
   }
