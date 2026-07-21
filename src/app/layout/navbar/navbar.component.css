@@ -449,6 +449,9 @@
     font-size:20px;
     font-weight:600;
 }
+.address{
+  margin-left: auto;
+}
 .notification-badge {
   margin-left: auto;          /* Push badge to the right */
   min-width: 22px;

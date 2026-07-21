@@ -14,6 +14,6 @@ import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
   imports: [
     CommonModule,NotificationsRoutingModule,TimeAgoPipe
   ],
-  
+  exports: [NotificationListComponent]
 })
 export class NotificationsModule {}

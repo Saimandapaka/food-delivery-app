@@ -1,23 +1,4 @@
-
-          <div class="card"  [ngStyle]="issavedaddress ? {'margin':'20px'} : {}" *ngIf="mode==='list'">
-  
-            <div class="card-hdr">Saved addresses <span class="edit-btn" (click)="add()">+ Add new</span></div>
-            <div class="addr-row" *ngFor="let add of address;  let i = index"
-  (click)="selectAddress(i)"
-  [class.selected-address]="selectedAddressIndex === i">  
-                <div >   
-                    <div class="addr-type">{{add.type}}</div><br>
-                    <div class="addr-txt">{{add.addressLine}},{{add.building}},{{add.area}},{{add.city}}</div>
-                </div>
-                <div class="addr-acts">
-                    <span class="addr-edit" (click)="edit(add)">Edit</span>
-                    <span class="addr-del" (click)="deleteAddress(add.id)" >Delete</span>
-                </div>
-            </div>
-            <div class="add-addr-btn" (click)="add()">+ Add new address</div>
-          </div>
-          <!-- addnewaddress -->
-  <form #addressForm="ngForm" (ngSubmit)="validation(addressForm)" *ngIf="mode==='add' || mode==='edit'">
+        <form #addressForm="ngForm" (ngSubmit)="validation(addressForm)">
 
 
 <div class="m" style="border-radius: 50px;"  >
@@ -29,13 +10,20 @@
     <div  class="content-card">
         <div>
         <div class="cc-header" *ngIf="!ismobile">
-        <div class="cc-title"><span *ngIf="mode==='add'">Add new Address</span><span *ngIf="mode==='edit'">Edit Address</span></div>
-        <div class="cc-action" style="color:#555;" (click)="changemode()">
+        <div class="cc-title">Add new address</div>
+        <div class="cc-action" style="color:#555;" (click)="changeDisplay()">
             ← Back to addresses
         </div>
     </div>
     
-        
+        <div class="nb-m" *ngIf="ismobile" >
+            <div class="nb-back" >
+                ←
+            </div>
+            <div class="nb-title-m">
+                Add new address
+            </div>
+        </div>
     </div>
         <div style="margin-bottom:16px;">
         <div class="field-label"
@@ -85,7 +73,7 @@
 
         <div class="field">
 
-            <div class="field-label">Building / Society</div> 
+            <div class="field-label">Building / Society</div>
 
             <input
                 type="text"
@@ -199,45 +187,27 @@
     </div>
 
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-       
-        <input
-  type="checkbox"
-  id="default-addr"
-  name="defaultAddress"
-  [(ngModel)]="isDefault">
+        <input type="checkbox" id="default-addr">
         <label for="default-addr">Set as default delivery address</label>
     </div>
 
     <div *ngIf="!ismobile">
         
-        <button  class="cancel-btn" (click)="deleteAddressedit()">
-           <span *ngIf="mode==='add'">Cancel</span><span *ngIf="mode==='edit'">Delete Address</span>
+        <button type="button" class="cancel-btn" (click)="changeDisplay()">
+           Cancel
         </button>
 
         <button type="submit" class="save-btn" >
-            <span *ngIf="mode==='add'">Save Address</span><span *ngIf="mode==='edit'">Update Address</span>
+            Save Address
         </button>
         
     </div>
     <div *ngIf="ismobile">
-         
-        <button class="m-save-btn" type="submit"><span *ngIf="mode==='add'">Save Address</span><span *ngIf="mode==='edit'">Update Address</span>  </button>
-        <button  (click)="deleteAddressedit()" class="mb-btn"><span *ngIf="mode==='add'"  >Cancel</span><span *ngIf="mode==='edit'"  >Delete Address</span></button>
+        <button class="m-save-btn">Save Address</button>
+        <!-- <button style="width:100%;background:white;color:#e53935;border:1.5px solid #e53935;border-radius:8px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;"><span *ngIf="display===2">Delete this address</span><span *ngIf="display===1">Cancel</span></button> -->
     </div>
     </div>
 
 </div>
 
         </form>
-<!-- <div *ngIf="display===1">
-    <app-addnewaddress (display)="receive($event)"></app-addnewaddress>
-</div>
-<div *ngIf="display===2">
-    <app-editaddress 
-    (display)="receive($event)"
-    [add]="editaddress"
-    ></app-editaddress>
-</div> -->
-  
-   
-       
