@@ -19,7 +19,12 @@ export class NavbarComponent implements OnInit {
   orderId: string = '';
   orderStatus: string = '';
 
+
   constructor(private router: Router, private menuService: MenuService, private restaurantService: RestaurantService, private notificationsService: NotificationsService,private orderService: OrderService) {}
+mode="list";
+  
+  orderNumber: string = '';
+
   isHomePage(): boolean {
     return this.router.url === '/home' || this.router.url === '/';
    }
@@ -98,10 +103,8 @@ loadOrderDetails(): void {
 
 
         // Your db.json contains only "id"
-        this.orderId = order.id;
-
-        // Order status
-        this.orderStatus = order.status;
+        this.orderNumber = order.orderNumber;
+        this.orderStatus = order.status; 
 
       });
 

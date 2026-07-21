@@ -70,7 +70,7 @@ export class OrderHistoryComponent {
     // should now become visible
     setInterval(() => {
       this.loadOrders();
-    }, 1000);
+    }, 100000);
 
   }
 }

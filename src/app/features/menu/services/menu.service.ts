@@ -7,7 +7,7 @@ export class MenuService {
 
   constructor() { }
    public cartSubject = new BehaviorSubject<any[]>([]);
-cart$ = this.cartSubject.asObservable();
+   cart$ = this.cartSubject.asObservable();
   get cart() {
     return this.cartSubject.value;
   }
@@ -15,9 +15,7 @@ cart$ = this.cartSubject.asObservable();
   addToCart(item: any) {
     // create the new array with the existing cart items-->copy cart
   const cart = [...this.cart];
-
   const index = cart.findIndex(i => i.id === item.id);
-
   if (index !== -1) {
     cart[index] = {
       ...cart[index],
@@ -56,4 +54,9 @@ cart$ = this.cartSubject.asObservable();
     this.cartSubject.next(cart);
 
   }
+  // Remove all items from cart
+clearCart() {
+ this.cartSubject.next([]);
+
+}
 }

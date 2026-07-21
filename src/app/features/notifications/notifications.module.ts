@@ -8,6 +8,7 @@ import { Notification } from './models/notification';
 import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
 
 @NgModule({
+
   declarations: [
     NotificationListComponent,
     NotificationItemComponent
@@ -16,6 +17,7 @@ import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
     CommonModule,NotificationsRoutingModule,TimeAgoPipe
   ],
   
+
 
 })
 export class NotificationsModule {}

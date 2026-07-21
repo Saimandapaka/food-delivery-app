@@ -21,11 +21,32 @@ export class OrderService {
   getOrderById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/orders/${id}`);
   }
+  // Save a new order in db.json
+placeOrder(order: any): Observable<any> {
+
+  return this.http.post<any>(
+    `${this.apiUrl}/orders`,
+    order
+  );
+
+}
+// Add a new notification into db.json
+addNotification(notification: any): Observable<any> {
+
+  return this.http.post(
+    `${this.apiUrl}/notifications`,
+    notification
+  );
+
+}
 // to change the status in db.json
   updateOrder(id: string, data: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}/orders/${id}`, data);
 
   }
+  getLatestOrder() {
+  return this.http.get<any[]>(`${this.apiUrl}/orders`);
+}
   
    
 getTimeline(placedAt: string, status: string ) {

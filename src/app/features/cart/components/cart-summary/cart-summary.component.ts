@@ -6,6 +6,10 @@ import { CartService } from '@features/cart/services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { OffersComponent } from '../offers/offers.component';
+import{Router} from '@angular/router';
+import{OrderService} from '@features/orders/services/order.service';
+import { ProfileService } from '@features/profile/services/profile.service';
+
 @Component({
   selector: 'app-cart-summary',
   standalone: true,
@@ -14,7 +18,7 @@ import { OffersComponent } from '../offers/offers.component';
   styleUrl: './cart-summary.component.css'
 })
 export class CartSummaryComponent {
-  constructor(private menuservice:MenuService, private restaurantServvice:RestaurantService, private cartservice:CartService){}
+  constructor(private menuservice:MenuService, private restaurantServvice:RestaurantService, private cartservice:CartService, private router:Router, private orderService:OrderService, private profileService: ProfileService){}
   @Input() id!:any;
   @Input() component!:string;
   ismobile!:boolean;
@@ -25,6 +29,7 @@ export class CartSummaryComponent {
   discountamount:number=0;
  finalamount!:number;
  discounttype!:string;
+ restaurantName = '';
  ngDoCheck(){
   
   this.totalprice=this.menuservice.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
@@ -37,11 +42,115 @@ export class CartSummaryComponent {
   this.checkScreenSize();
   
 this.restaurantServvice.getById(this.id).subscribe((data) => {
-
+   this.restaurantName=data.name;
   const { deliveryFee } = data;
   this.deliveryfee=deliveryFee
 });
 }
+
+placeOrder() {
+
+  // Stop if cart is empty
+  if (this.menuservice.cart.length === 0) {
+    return;
+  }
+
+  // Get existing orders
+  this.orderService.getOrders().subscribe((data: any) => {
+
+      const prefix = 'QB2024041200';
+
+let maxNumber = 0;
+
+data.orders.forEach((order: any) => {
+
+  if (order.orderNumber) {
+
+    const number = Number(
+      order.orderNumber.replace(prefix, '')
+    );
+
+    if (!isNaN(number) && number > maxNumber) {
+      maxNumber = number;
+    }
+
+  }
+
+});
+
+const nextNumber = maxNumber + 1;
+
+
+        const placedTime = new Date();
+        const estimatedDeliveryAt = new Date(placedTime.getTime() + 35 * 60000);
+       const selectedAddress = this.profileService.selectedAddress;
+        // Create order object
+    const order = {
+   orderNumber: `${prefix}${nextNumber}`,
+      userId: 1,
+      restaurantId: this.menuservice.cart[0].restaurantId,
+      restaurantName: this.restaurantName,
+      items: this.menuservice.cart,
+      subtotal: this.totalprice,
+      deliveryFee: this.deliveryfee,
+      discount: this.discountamount,
+      total: this.finalamount,
+        paymentMethod: 'Online',
+      status: 'placed',
+       address: selectedAddress,
+
+     placedAt: placedTime.toISOString(),
+
+     estimatedDeliveryAt: estimatedDeliveryAt.toISOString(),
+
+      deliveredAt: null,
+      timeline: this.orderService.getTimeline(new Date().toISOString(),'placed')
+    };
+
+    // Save order
+    this.orderService.placeOrder(order).subscribe((savedOrder: any) => {
+
+      // Create notification
+      const notification = {
+        userId: 1,
+        type: 'orders',
+        title: 'Order Placed',
+        description:
+          `Your order from ${savedOrder.restaurantName} has been placed successfully.`,
+        isRead: false,
+        createdAt: new Date().toISOString()
+       };
+
+       // Save notification
+       this.orderService.addNotification(notification).subscribe(() => {
+
+        // Clear cart
+        this.menuservice.clearCart();
+
+        // Navigate to success page
+        this.router.navigate(['/orders/order-placed']);
+
+      });
+
+    });
+
+  });
+  
+
+}
+
+trackOrder(): void {
+
+    this.router.navigate(['/orders']);
+
+  }
+
+  // Navigate to Home
+  goHome(): void {
+
+    this.router.navigate(['/home']);
+
+  }
  @HostListener('window:resize')
   onResize() {
     this.checkScreenSize();

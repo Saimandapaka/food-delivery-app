@@ -11,8 +11,6 @@
     <span>{{deliveryfee | currencyFormat}}</span>
   </div>
 
-  
-
   <div class="d-flex justify-content-between mb-2 text-success fw-medium">
     <span>Discount <span *ngIf="discountamount>0">(</span>{{discounttype}}<span *ngIf="discountamount>0">)</span></span>
     <span><span *ngIf="discountamount>0">₹</span>{{(discountamount)}}</span>
@@ -23,7 +21,7 @@
     <span>{{finalamount | currencyFormat}}</span>
   </div>
 
-  <button class="btn w-100 order-btn"  *ngIf="component==='cart'">
+  <button class="btn w-100 order-btn"  *ngIf="component==='cart'" (click)="placeOrder()">
   
      <span>Place Order →</span>
    
