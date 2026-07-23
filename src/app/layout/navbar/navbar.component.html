@@ -17,7 +17,7 @@
     <div class="search-box">
       <span class="search-icon">🔍</span>
       <input
-        type="text"
+        type="text"   
         placeholder="Search for restaurants or food..."
         class="search-input"
       />
@@ -128,8 +128,8 @@
 
 <nav class="mobile-order-navbar" *ngIf="isOrderDetailsPage()" >
     <button class="back-btn" (click)="navigateTo('/orders')" >← </button>
-    <div class="order-title"> Order #QB2024041200{{ orderId }} </div>
-    <span class="status-badge" style="margin-left: auto;" [ngClass]="orderStatus"> {{ orderStatus }}</span>
+    <div class="order-title">   Order #{{ order.orderNumber }} </div>
+    <span class="status-badge" style="margin-left: auto;" [ngClass]="orderStatus"> {{  order.status}}</span>
 </nav>
 <!-- MOBILE PROFILE NAVBAR -->
 

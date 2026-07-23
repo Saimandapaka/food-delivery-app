@@ -10,14 +10,25 @@ export class ProfileService {
   private apiUrl = environment.apiUrl;
   
     constructor(private http: HttpClient) {}
+
+
+  
+
     from=0;
   mode = new BehaviorSubject<'list' | 'add' | 'edit'>('list');
+
+  selectedAddress:any=null;
+
+
+
+
     getAll() {
       return this.http.get<any[]>(`${this.apiUrl}/users`);
     }
     getAllAddress() {
       return this.http.get<any[]>(`${this.apiUrl}/addresses`);
     }
+
     postAddress(address:any){
       return this.http.post<any[]>(`${this.apiUrl}/addresses`,address);
     }
@@ -34,3 +45,4 @@ export class ProfileService {
     return this.http.patch(`${this.apiUrl}/users/${id}`, user);
   }
 } 
+

@@ -24,15 +24,25 @@ export class NotificationsService {
 
   loadNotifications() {
 
-    this.http.get<Notification[]>(this.apiUrl)
-      .subscribe(data => {
+  this.http.get<Notification[]>(this.apiUrl)
+    .subscribe(data => {
 
-        this.notificationSubject.next(data);
+      // Unread first, then newest first
+      data.sort((a, b) => {
 
+        if (a.isRead !== b.isRead) {
+          return a.isRead ? 1 : -1;
+        }
+
+        return new Date(b.createdAt).getTime() -
+               new Date(a.createdAt).getTime();
       });
 
-  }
+      this.notificationSubject.next(data);
 
+    });
+
+}
 
   // Current notifications
  
@@ -51,32 +61,75 @@ export class NotificationsService {
   }
 
   // Mark one notification as read
-  markSingleAsRead(id: number) {
+ // Mark only the clicked notification as read
+markSingleAsRead(id: number): void {
 
-    const updated = this.notifications.map(n =>
+  // Find the clicked notification
+  const notification = this.notifications.find(n => n.id === id);
 
-      n.id === id
-        ? { ...n, isRead: true }
-        : n
-
-    );
-
-    this.notificationSubject.next(updated);
-
+  // Stop if notification is not found
+  if (!notification) {
+    return;
   }
 
- 
+  // Update isRead in db.json
+  this.http.patch(`${this.apiUrl}/${id}`, { isRead: true }) .subscribe(() => {
+
+      // Update notification list in the application
+      const updatedNotifications = this.notifications.map(n =>n.id === id ? { ...n, isRead: true } : n);
+
+      // Notify all subscribed components
+      this.notificationSubject.next(updatedNotifications);
+
+    });
+
+}
+
   // Mark all as read
- 
-  markAllAsRead() {
+  // Mark all notifications as read
+markAllAsRead(): void {
 
-    const updated = this.notifications.map(n => ({
-      ...n,
-      isRead: true
-    }));
+  // Update every unread notification in db.json
+  this.notifications.forEach(notification => {
 
-    this.notificationSubject.next(updated);
+    if (!notification.isRead) {
 
-  }
+      this.http.patch(
+        `${this.apiUrl}/${notification.id}`,
+        { isRead: true }
+      ).subscribe();
+
+    }
+
+  });
+
+  // Update all notifications in the application
+  const updatedNotifications = this.notifications.map(notification => ({
+    ...notification,
+    isRead: true
+  }));
+
+  // Notify all subscribed components
+  this.notificationSubject.next(updatedNotifications);
+
+}
+// Save notification in db.json
+addNotification(notification: any) {
+
+  return this.http.post<Notification>(this.apiUrl, notification)
+    .subscribe(savedNotification => {
+
+      // Get current notifications
+      const notifications = this.notificationSubject.value;
+
+      // Add the new notification at the beginning
+      this.notificationSubject.next([
+        savedNotification,
+        ...notifications
+      ]);
+
+    });
+
+}
 
 }

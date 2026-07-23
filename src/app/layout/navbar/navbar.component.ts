@@ -19,8 +19,12 @@ export class NavbarComponent implements OnInit {
   restaurantName = "";
   orderId: string = '';
   orderStatus: string = '';
+  orderNumber: string = '';
+order:any;
+
 mode="list";
   constructor(private router: Router, private menuService: MenuService, private restaurantService: RestaurantService, private notificationsService: NotificationsService,private orderService: OrderService,private profileservice : ProfileService) {}
+
   isHomePage(): boolean {
     return this.router.url === '/home' || this.router.url === '/';
    }
@@ -56,6 +60,12 @@ changemodetoadd(){
 this.profileservice.mode.next("add");
 }
    ngOnInit(): void {
+    this.orderService.getLatestOrder().subscribe(data => {
+
+      this.order = data[data.length - 1];
+      
+      console.log(data)
+    });
     this.profileservice.mode.subscribe(mode => {
     this.mode = mode;
   });
@@ -86,6 +96,10 @@ this.profileservice.mode.next("add");
     });
     this.notificationsService.loadNotifications();
 
+  setInterval(() => {
+    this.notificationsService.loadNotifications();
+  }, 2000);
+
 this.notificationsService.notifications$
   .subscribe(data => {
 
@@ -112,15 +126,13 @@ loadOrderDetails(): void {
 
 
         // Your db.json contains only "id"
-        this.orderId = order.id;
-
-        // Order status
-        this.orderStatus = order.status;
+        this.orderNumber = order.orderNumber;
+        this.orderStatus = order.status; 
 
       });
 
   }
-
+   
 }
   
 

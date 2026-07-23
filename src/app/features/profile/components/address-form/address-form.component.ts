@@ -22,6 +22,7 @@ export class AddressFormComponent {
 
 
   address: any[] = [];
+
   type:any="Home";
   flat!:any;
   building!:any;
@@ -41,7 +42,10 @@ isDefault=false;
 
 
  selectAddress(index:any) {
+
   this.selectedAddressIndex = index;
+  this.profileService.selectedAddress = this.address[index];
+
 }
  
   
@@ -120,16 +124,27 @@ isDefault=false;
 
 }
 
-getalladdress(){
+
+
+ getalladdress(){
   this.profileService.getAllAddress().subscribe({
-        next: (data) => {
-          this.address = data;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+    next: (data) => {
+
+      this.address = data;
+
+      // Select first address by default
+      if (this.address.length > 0) {
+        this.selectedAddressIndex = 0;
+        this.profileService.selectedAddress = this.address[0];
+      }
+
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  });
 }
+
   add(){
  
      this.flat='';
@@ -141,6 +156,7 @@ getalladdress(){
      this.display=1;
 
  }
+
    edit(data:any){
      this.profileService.mode.next("edit");
      this.display=2;
@@ -173,4 +189,15 @@ deleteAddressedit(){
 changemode(){
   this.profileService.mode.next("list");
 }
-}
+
+
+      
+  
+    }
+    
+    
+  
+
+
+
+

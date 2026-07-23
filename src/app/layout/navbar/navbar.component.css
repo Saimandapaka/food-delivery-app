@@ -497,5 +497,9 @@
     top:0;
     z-index:100;
 }
+.order-title{
+  font-size:18px;
+    font-weight:500;
+}
 
 }

@@ -1,0 +1,130 @@
+<div class="success-page" *ngIf="order">
+
+  <!-- Success Icon -->
+  <div class="success-anim">🎉</div>
+
+  <!-- Title -->
+  <div class="success-title">
+    Order placed!
+  </div>
+
+  <!-- Subtitle -->
+ <div class="success-sub" *ngIf="isMobile">
+  {{ order.restaurantName }} confirmed your order. Food is on its way!
+</div>
+
+<div class="success-sub" *ngIf="!isMobile">
+  Your order has been confirmed by {{ order.restaurantName }}.
+  <br>
+  Sit back and relax — food is on its way!
+</div>
+
+  <!-- Order Details -->
+  <div class="order-meta-card">
+
+    <div class="omc-row">
+      <div class="omc-label">Order number</div>
+      <div class="omc-value">
+       #{{ order.orderNumber }}
+      </div>
+    </div>
+
+    <div class="omc-row">
+      <div class="omc-label">Restaurant</div>
+      <div class="omc-value">
+        {{ resname }}
+      </div>
+    </div>
+
+    <div class="omc-row">
+      <div class="omc-label">Items</div>
+      <div class="omc-value">
+        {{ order.items.length }} items
+      </div>
+    </div>
+
+    <div class="omc-row">
+      <div class="omc-label">Amount paid</div>
+      <div class="omc-value" style="color:#FF5722;">
+        {{ order.total | currencyFormat }}
+      </div>
+    </div>
+
+    <div class="omc-row">
+      <div class="omc-label">Payment</div>
+      <div class="omc-value">
+        {{ order.paymentMethod }}
+      </div>
+    </div>
+
+    <div class="omc-row">
+      <div class="omc-label">Status</div>
+      <div>
+        <span class="omc-status">
+          ✓ {{ order.status }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Delivery Information -->
+  <div class="delivery-strip">
+
+    <div class="ds-icon">
+      🛵
+    </div>
+
+    <div>
+
+      <div class="ds-title">
+        <span *ngIf="!isMobile">
+          Estimated delivery:
+          {{ order.estimatedDeliveryAt | date:'h:mm a' }} (15 mins) 
+        </span>
+        <span *ngIf="isMobile">
+          ETA:{{ order.estimatedDeliveryAt | date:'h:mm a' }} (15 mins) 
+        </span>
+      </div>
+
+    <div class="ds-sub">
+
+  <span *ngIf="!isMobile">
+    Delivering to ·
+    {{ order.address?.addressLine }},
+    {{ order.address?.area }},
+    {{ order.address?.city }}
+  </span>
+
+  <span *ngIf="isMobile">
+    {{ order.address?.addressLine }},
+    {{ order.address?.area }}
+  </span>
+
+</div>
+    </div>
+
+  </div>
+
+  <!-- Buttons -->
+  <div class="success-actions">
+
+    <button
+      class="sa-primary"
+      routerLink="/orders">
+
+      Track order →
+
+    </button>
+
+    <button
+      class="sa-secondary"
+      routerLink="/home">
+
+      Back to home
+
+    </button>
+
+  </div>
+
+</div>

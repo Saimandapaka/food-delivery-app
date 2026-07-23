@@ -7,7 +7,7 @@
     style="display:flex;justify-content:space-between;align-items:center;">
 
     <span class="idno">
-      ← Order #QB2024041200{{ order.id }}
+      ← Order #{{ order.orderNumber }}
     </span>
 
     <span
@@ -259,8 +259,12 @@
      <div class="sum-side"  *ngIf="order.status !== 'cancelled'">
        <div class="sc-title">  Delivered into </div>
          <div class="addr-box">
-           <div class="addr-type">Home</div>
-           <div class="addr-txt">{{ order.address }}</div>
+           <div class="addr-type">{{ order.address?.type }}</div>
+             <div class="addr-txt">
+               {{ order.address?.addressLine }},
+               {{ order.address?.area }},
+               {{ order.address?.city }}
+             </div>
          </div>
 
        <div *ngIf="order.status === 'delivered'" style="margin-top:14px;">
