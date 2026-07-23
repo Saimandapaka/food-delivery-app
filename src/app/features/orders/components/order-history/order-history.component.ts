@@ -7,35 +7,35 @@ import { HostListener } from '@angular/core';
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.css'
 })
-export class OrderHistoryComponent {
+   export class OrderHistoryComponent {
   
-  orders: any[] = [];
-  isMobile = window.innerWidth <= 768;
+   orders: any[] = [];
+   isMobile = window.innerWidth <= 768;
 
-  @HostListener('window:resize')
-  onResize() {
+   @HostListener('window:resize')
+   onResize() {
     this.isMobile = window.innerWidth <= 768;
-  }
+   }
 
-  constructor(
+   constructor(
 
     private router: Router,
     private orderService: OrderService
-  ) {}
+   ) {}
 
-  goToOrderDetails(order: any) {
+   goToOrderDetails(order: any) {
     this.router.navigate(['/orders', order.id]);
-  }
+   }
 
-  getDisplayItems(items: any[]): any[] {
+   getDisplayItems(items: any[]): any[] {
     return items.slice(0, this.isMobile ? 1 : items.length);
-  }
+   }
 
-  // Load orders from API
-  loadOrders() {
+   // Load orders from API
+    loadOrders() {
 
-  this.orderService.getOrders()
-    .subscribe(({ orders, restaurants }) => {
+     this.orderService.getOrders()
+     .subscribe(({ orders, restaurants }) => {
       this.orders = orders
 
         .map(order => {
@@ -54,11 +54,17 @@ export class OrderHistoryComponent {
         })
 
         // Show order only after placedAt time is reached
-        .filter(order =>
-          new Date() >= new Date(order.placedAt)
-        );
+         .filter(order =>
+    new Date() >= new Date(order.placedAt)
+  )
+
+  // Newest order first
+   .sort((a:any, b:any) =>
+    new Date(b.placedAt).getTime() -new Date(a.placedAt).getTime());
 
     });
+    
+  
   }
 
   ngOnInit() {
@@ -70,7 +76,7 @@ export class OrderHistoryComponent {
     // should now become visible
     setInterval(() => {
       this.loadOrders();
-    }, 100000);
+    }, 10000);
 
   }
 }

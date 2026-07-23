@@ -30,15 +30,7 @@ placeOrder(order: any): Observable<any> {
   );
 
 }
-// Add a new notification into db.json
-addNotification(notification: any): Observable<any> {
 
-  return this.http.post(
-    `${this.apiUrl}/notifications`,
-    notification
-  );
-
-}
 // to change the status in db.json
   updateOrder(id: string, data: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}/orders/${id}`, data);
@@ -65,28 +57,28 @@ getTimeline(placedAt: string, status: string ) {
       status: 'confirmed',
       label: 'Order Confirmed by Restaurant',
       time: new Date(
-        placed.getTime() + 14 * 60000
+        placed.getTime() + 4 * 60000
       ).toISOString()
     },
     {
       status: 'preparing',
       label: 'Food being prepared',
       time: new Date(
-        placed.getTime() + 15 * 60000
+        placed.getTime() + 8 * 60000
       ).toISOString()
     },
     {
       status: 'out_for_delivery',
       label: 'Out for Delivery',
       time: new Date(
-        placed.getTime() + 16 * 60000
+        placed.getTime() + 11 * 60000
       ).toISOString()
     },
     {
       status: 'delivered',
       label: 'Delivered',
       time: new Date(
-        placed.getTime() + 17 * 60000
+        placed.getTime() + 15 * 60000
       ).toISOString()
     }
   ];

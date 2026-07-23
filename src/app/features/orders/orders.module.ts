@@ -18,6 +18,7 @@ import{SharedModule} from '@shared/shared.module';
     OrdersRoutingModule,
     TimeAgoPipe,SharedModule
 
-  ]
+  ],
+  exports: [OrderHistoryComponent]
 })
 export class OrdersModule { }

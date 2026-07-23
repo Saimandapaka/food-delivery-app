@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
+import { Component,HostListener, Input, output } from '@angular/core';
 import { ProfileService } from '@features/profile/services/profile.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule,NgForm} from '@angular/forms';
+ import { Router } from '@angular/router';
+ import { RouterOutlet } from '@angular/router';
+ import { RouterLink } from '@angular/router';
+ import { AddnewaddressComponent } from '../addnewaddress/addnewaddress.component';
+ import { EditaddressComponent } from '../editaddress/editaddress.component';
+ import { Output } from '@angular/core';
+ import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-address-form',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule,RouterLink,AddnewaddressComponent,EditaddressComponent],
   templateUrl: './address-form.component.html',
   styleUrl: './address-form.component.css'
 })
 export class AddressFormComponent {
-  address: any[] = [];
+ 
+ constructor(private profileService: ProfileService,private router: Router) {}
 
+
+  address: any[] = [];
 
   type:any="Home";
   flat!:any;
@@ -32,35 +43,108 @@ isDefault=false;
 
  selectAddress(index:any) {
 
-  
- 
-
-
   this.selectedAddressIndex = index;
   this.profileService.selectedAddress = this.address[index];
 
 }
-  constructor(private profileService: ProfileService) {}
+ 
   
     ngOnInit(): void {
-  
-      this.profileService.getAllAddress().subscribe({
-        next: (data) => {
-          this.address = data;
-          // Select the first address by default
+       this.issavedaddress=this.router.url.startsWith('/profile/savedaddress');
+       this.profileService.mode.subscribe(mode => {
+    this.mode = mode;
+  });
+      this.getalladdress();
+      this.checkScreenSize();
+    }
+     @HostListener('window:resize')
+      onResize() {
+        this.checkScreenSize();
+      }
+      checkScreenSize(){
+        this.ismobile=window.innerWidth<=768;
+        this.issavedaddress=this.router.url.startsWith('/profile/savedaddress');
+         if(window.innerWidth>768 && this.router.url.includes('/profile'))
+            this.router.navigate(['profile']);
+      }
+      validation(form: NgForm) {
+
+  if (form.invalid) {
+    return;
+  }
+
+  const add={
+        
+                "id": this.address.length+1+"",
+                "userId": 1,
+                "type": this.type,
+                "addressLine": this.flat,
+                "building":this.building,
+                "area": this.street,
+                "city": this.city,
+                "pincode": this.pincode,
+                "isDefault": true
+      }
+     
+      const update={
+             
+               "type": this.type,
+                "addressLine": this.flat,
+                "building":this.building,
+                "area": this.street,
+                "city": this.city,
+                "pincode": this.pincode,
+      }
+    
+        
+     
+      if(this.mode==='add'){
+         this.profileService.postAddress(add).subscribe(() => {
+    this.getalladdress();
+  });
+      }
+   
+     if(this.mode==='edit'){
+       this.profileService.patchAddress(this.updateid,update).subscribe(() => {
+    this.getalladdress();
+  });
+        
+  this.updateid=0;
+     }
+     if(this.isDefault)
+        {
+          if(this.mode==='edit')
+            this.selectedAddressIndex=this.updateid-1;
+          else
+            this.selectedAddressIndex=this.address.length;
+        }
+         this.profileService.mode.next("list");
+      this.display=0;
+    
+
+}
+
+
+
+ getalladdress(){
+  this.profileService.getAllAddress().subscribe({
+    next: (data) => {
+
+      this.address = data;
+
+      // Select first address by default
       if (this.address.length > 0) {
         this.selectedAddressIndex = 0;
         this.profileService.selectedAddress = this.address[0];
       }
-        },
-        error: (err) => {
-          console.log(err);
-        }
 
-      });
-
-
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  });
 }
+
   add(){
  
      this.flat='';
@@ -72,16 +156,7 @@ isDefault=false;
      this.display=1;
 
  }
- getalladdress(){
-  this.profileService.getAllAddress().subscribe({
-        next: (data) => {
-          this.address = data;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
-}
+
    edit(data:any){
      this.profileService.mode.next("edit");
      this.display=2;
@@ -115,11 +190,14 @@ changemode(){
   this.profileService.mode.next("list");
 }
 
+
       
   
     }
     
     
   
+
+
 
 

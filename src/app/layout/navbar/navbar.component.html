@@ -128,11 +128,30 @@
 
 <nav class="mobile-order-navbar" *ngIf="isOrderDetailsPage()" >
     <button class="back-btn" (click)="navigateTo('/orders')" >← </button>
-    <div class="order-title">   Order #{{ orderNumber }} </div>
-    <span class="status-badge" style="margin-left: auto;" [ngClass]="orderStatus"> {{ orderStatus }}</span>
+    <div class="order-title">   Order #{{ order.orderNumber }} </div>
+    <span class="status-badge" style="margin-left: auto;" [ngClass]="orderStatus"> {{  order.status}}</span>
 </nav>
 <!-- MOBILE PROFILE NAVBAR -->
 
 <nav class="mobile-cart-navbar" *ngIf="isProfilePage()">
   <button class="back-btn" (click)="navigateTo('/home')"> ← </button> 
 </nav>
+
+<nav class="mobile-cart-navbar" *ngIf="issavedaddressPage() && mode==='list'">
+  <button class="back-btn" (click)="navigateTo('/profile')">← </button>
+  <div class="cart-title">Saved Addresses</div>
+  <span class="address" (click)="changemodetoadd()"> +Add </span>
+</nav>
+<nav class="mobile-cart-navbar" *ngIf="issavedaddressPage() && mode==='add'">
+  <button class="back-btn" (click)="changemode()">← </button>
+  <div class="cart-title">Add new Address</div>
+</nav>
+<nav class="mobile-cart-navbar" *ngIf="issavedaddressPage() && mode==='edit'">
+  <button class="back-btn" (click)="changemode()">← </button>
+  <div class="cart-title">Edit Address</div>
+</nav>
+<nav class="mobile-cart-navbar" *ngIf="isprofileinfopage()">
+    <button class="back-btn" (click)="navigateTo('/profile')">← </button>
+  <div class="cart-title"> Profile info</div>
+</nav>
+

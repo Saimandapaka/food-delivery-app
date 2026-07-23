@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddressFormComponent } from '@features/profile/components/address-form/address-form.component';
+import { AddnewaddressComponent } from '@features/profile/components/addnewaddress/addnewaddress.component';
+import { EditaddressComponent } from '@features/profile/components/editaddress/editaddress.component';
+import { ProfileInfoComponent } from '@features/profile/components/profile-info/profile-info.component';
 export const routes: Routes = [
+  
   
   {
     path: '',

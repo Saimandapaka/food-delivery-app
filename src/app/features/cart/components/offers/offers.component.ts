@@ -99,7 +99,7 @@ value:number=0;
 
 applyCoupon(couponCod:string,value:any):boolean{
   this.value=value;
-  console.log(this.id)
+ 
   
    const coupon = this.offers.find(offer =>
       offer.code.toLowerCase() === couponCod.trim().toLowerCase()&&offer.isActive&&(offer.restaurantId === null)

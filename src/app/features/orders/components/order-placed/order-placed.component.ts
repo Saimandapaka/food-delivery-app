@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-order-placed',
@@ -11,7 +12,12 @@ export class OrderPlacedComponent implements OnInit {
   order: any;
   restaurantName: any ;
   resname:string='';
+  isMobile = window.innerWidth <= 768;
   constructor(private orderService: OrderService) {}
+  @HostListener('window:resize')
+onResize() {
+  this.isMobile = window.innerWidth <= 768;
+}
 
   ngOnInit(): void {
 

@@ -116,10 +116,19 @@ markAllAsRead(): void {
 // Save notification in db.json
 addNotification(notification: any) {
 
-  return this.http.post(
-    this.apiUrl,
-    notification
-  );
+  return this.http.post<Notification>(this.apiUrl, notification)
+    .subscribe(savedNotification => {
+
+      // Get current notifications
+      const notifications = this.notificationSubject.value;
+
+      // Add the new notification at the beginning
+      this.notificationSubject.next([
+        savedNotification,
+        ...notifications
+      ]);
+
+    });
 
 }
 

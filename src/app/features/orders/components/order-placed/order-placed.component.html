@@ -9,11 +9,15 @@
   </div>
 
   <!-- Subtitle -->
-  <div class="success-sub">
-    Your order has been confirmed by {{ order.restaurantName }}.
-    <br>
-    Sit back and relax — food is on its way!
-  </div>
+ <div class="success-sub" *ngIf="isMobile">
+  {{ order.restaurantName }} confirmed your order. Food is on its way!
+</div>
+
+<div class="success-sub" *ngIf="!isMobile">
+  Your order has been confirmed by {{ order.restaurantName }}.
+  <br>
+  Sit back and relax — food is on its way!
+</div>
 
   <!-- Order Details -->
   <div class="order-meta-card">
@@ -74,16 +78,29 @@
     <div>
 
       <div class="ds-title">
-        Estimated delivery:
-        {{ order.estimatedDeliveryAt | date:'h:mm a' }}
-  (35 mins) 
+        <span *ngIf="!isMobile">
+          Estimated delivery:
+          {{ order.estimatedDeliveryAt | date:'h:mm a' }} (15 mins) 
+        </span>
+        <span *ngIf="isMobile">
+          ETA:{{ order.estimatedDeliveryAt | date:'h:mm a' }} (15 mins) 
+        </span>
       </div>
 
-      <div class="ds-sub">
-  Delivering to ·
-  {{ order.address.addressLine }},
-  {{ order.address.area }},
-  {{ order.address.city }}
+    <div class="ds-sub">
+
+  <span *ngIf="!isMobile">
+    Delivering to ·
+    {{ order.address?.addressLine }},
+    {{ order.address?.area }},
+    {{ order.address?.city }}
+  </span>
+
+  <span *ngIf="isMobile">
+    {{ order.address?.addressLine }},
+    {{ order.address?.area }}
+  </span>
+
 </div>
     </div>
 
@@ -109,46 +126,5 @@
     </button>
 
   </div>
-
-</div>
-<div class="m-success">
-
-  
-  <div class="m-success-sub">
-    {{ order.restaurantName }} confirmed your order. Food is on its way!
-  </div>
-
-  <div class="m-omc">
-    <div class="m-omc-row">
-      <div class="m-omc-label">Order ID</div>
-      <div class="m-omc-value">#{{ order.orderNumber }}</div>
-    </div>
-  </div>
-
-  <div class="m-ds">
-    <div class="m-ds-icon">🛵</div>
-
-    <div>
-      <div class="m-ds-title">
-        ETA:
-        {{ order.estimatedDeliveryAt | date:'h:mm a' }}
-        (35 mins)
-      </div>
-
-      <div class="m-ds-sub">
-        {{ order.address?.addressLine }},
-        {{ order.address?.area }}
-      </div>
-    </div>
-  </div>
-
-  <button class="m-sa-primary" 
-      routerLink="/orders">
-    Track order →
-  </button>
-
-  <button class="m-sa-secondary" routerLink="/home">
-    Back to home
-  </button>
 
 </div>

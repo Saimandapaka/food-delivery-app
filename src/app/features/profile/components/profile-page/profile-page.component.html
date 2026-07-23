@@ -29,7 +29,7 @@
             [class.active]="selected === 1"
   (click)="selected = 1" (click)=" scrollToCategory('profile')">
       <span>👤</span>
-      <span class="nav-link-text"
+      <span class="nav-link-text" (click)="visiblecomponent=0"
       >Personal info</span>
     </div>
     <div
@@ -37,21 +37,21 @@
       [class.active]="selected === 2"
   (click)="selected = 2" (click)=" scrollToCategory('address')">
       <span>📍</span>
-      <span class="nav-link-text">Saved Address</span>
+      <span class="nav-link-text" (click)="visiblecomponent=0">Saved Address</span>
     </div>
     <div
       class="nav-link menu-link py-2 px-2"
       [class.active]="selected === 3"
   (click)="selected = 3">
       <span>📦</span>
-      <span class="nav-link-text">Order History</span>
+      <span class="nav-link-text" (click)="visiblecomponent=1">Order History</span>
     </div>
     <div
       class="nav-link menu-link py-2 px-2" 
       [class.active]="selected === 4"
   (click)="selected = 4">
       <span>🔔</span>
-      <span class="nav-link-text">Notifycations</span>
+      <span class="nav-link-text" (click)="visiblecomponent=2">Notifications</span>
     </div>
      <div
       class="nav-link menu-link px-2"
@@ -66,12 +66,19 @@
   
   <div class="profile-info w-100" >
     
- <div id="profile">
+ <div id="profile" *ngIf=" visiblecomponent===0">
      <app-profile-info></app-profile-info>
  </div>
-  <div id="address">
+  <div id="address" *ngIf=" visiblecomponent===0">
     <app-address-form></app-address-form>
   </div>
+  <div *ngIf=" visiblecomponent===1">
+    <app-order-history></app-order-history>
+  </div>
+  <div *ngIf=" visiblecomponent===2">
+    <app-notification-list></app-notification-list>
+  </div>
+  
 </div>
 
 </div>
@@ -84,9 +91,8 @@
           <div class="m-phone">+91 {{phnumber}}</div>
       </div>
       <div class="m-list">
-          <div class="m-list-item"data-bs-toggle="collapse"
-        data-bs-target="#profileinfo">
-👤 Personal info <span><i class="bi bi-chevron-down"></i></span>
+          <div class="m-list-item" (click)="navigateTo('personalinfo')">
+👤 Personal info
 
       </div>
     <div id="profileinfo" class="collapse hide">
@@ -96,8 +102,8 @@
       </div>
 
     </div>
-    <div class="m-list-item"data-bs-toggle="collapse"
-        data-bs-target="#savedaddress">📍 Saved Address<span><i class="bi bi-chevron-down"></i></span>
+    <div class="m-list-item" (click)="navigateTo('savedaddress')">
+      📍 Saved Address
     </div>
 
     <div id="savedaddress" class="collapse hide">
@@ -107,27 +113,27 @@
           </div>
 
     </div>
-          <div class="m-list-item" data-bs-toggle="collapse"
-        data-bs-target="#orderhistory">📦 Order History<span><i class="bi bi-chevron-down"></i></span>
-      </div>
+          <div class="m-list-item" (click)="navigateToo('/orders')">
+            📦 Order History
+         </div>
       <div id="orderhistory" class="collapse hide">
 
           <div class="card-body">
-            ...
+           <app-order-history></app-order-history>
           </div>
 
     </div>
-          <div class="m-list-item" data-bs-toggle="collapse"
-        data-bs-target="#notifycations">🔔 Notifycations<span><i class="bi bi-chevron-down"></i></span>
-      </div><div id="notifycations" class="collapse hide">
+          <div class="m-list-item" (click)="navigateToo('/notifications')">
+            🔔 Notifications
+        </div>
+        <div id="notifycations" class="collapse hide">
 
           <div class="card-body">
-           ...
+            <app-notification-list></app-notification-list>
           </div>
 
     </div>
-          <div class="m-list-item" data-bs-toggle="collapse"
-        data-bs-target="#signout">🚪 Sign Out<span><i class="bi bi-chevron-down"></i></span>
+          <div class="m-list-item" >🚪 Sign Out
       </div>
       <div id="signout" class="collapse hide">
 
@@ -139,3 +145,15 @@
       </div>
       
  </div>
+<!-- <div class="page-content">
+  <router-outlet></router-outlet>
+</div> -->
+ <!-- <div class="m-list-item" data-bs-toggle="collapse"
+        data-bs-target="#notifycations">🔔 Notifications<span><i class="bi bi-chevron-down"></i></span>
+      </div><div id="notifycations" class="collapse hide">
+
+          <div class="card-body">
+            <app-notification-list></app-notification-list>
+          </div>
+
+    </div> -->

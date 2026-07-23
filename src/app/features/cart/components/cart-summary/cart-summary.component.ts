@@ -9,6 +9,7 @@ import { OffersComponent } from '../offers/offers.component';
 import{Router} from '@angular/router';
 import{OrderService} from '@features/orders/services/order.service';
 import { ProfileService } from '@features/profile/services/profile.service';
+import { NotificationsService } from '@features/notifications/services/notifications.service';
 
 @Component({
   selector: 'app-cart-summary',
@@ -18,7 +19,7 @@ import { ProfileService } from '@features/profile/services/profile.service';
   styleUrl: './cart-summary.component.css'
 })
 export class CartSummaryComponent {
-  constructor(private menuservice:MenuService, private restaurantServvice:RestaurantService, private cartservice:CartService, private router:Router, private orderService:OrderService, private profileService: ProfileService){}
+  constructor(private menuservice:MenuService, private restaurantServvice:RestaurantService, private cartservice:CartService, private router:Router, private orderService:OrderService, private profileService: ProfileService,private notificationsService: NotificationsService ){}
   @Input() id!:any;
   @Input() component!:string;
   ismobile!:boolean;
@@ -57,6 +58,12 @@ placeOrder() {
 
   // Get existing orders
   this.orderService.getOrders().subscribe((data: any) => {
+    // Find the highest existing id
+  const maxId = data.orders.length
+    ? Math.max(...data.orders.map((o: any) => Number(o.id)))
+    : 0;
+
+  const nextId = maxId + 1;
 
       const prefix = 'QB2024041200';
 
@@ -82,12 +89,13 @@ const nextNumber = maxNumber + 1;
 
 
         const placedTime = new Date();
-        const estimatedDeliveryAt = new Date(placedTime.getTime() + 35 * 60000);
+        const estimatedDeliveryAt = new Date(placedTime.getTime() + 15 * 60000);
        const selectedAddress = this.profileService.selectedAddress;
         // Create order object
     const order = {
+     id:nextId,
    orderNumber: `${prefix}${nextNumber}`,
-      userId: 1,
+      userId: 2,
       restaurantId: this.menuservice.cart[0].restaurantId,
       restaurantName: this.restaurantName,
       items: this.menuservice.cart,
@@ -122,7 +130,7 @@ const nextNumber = maxNumber + 1;
        };
 
        // Save notification
-       this.orderService.addNotification(notification).subscribe(() => {
+       this.notificationsService.addNotification(notification)
 
         // Clear cart
         this.menuservice.clearCart();
@@ -134,7 +142,7 @@ const nextNumber = maxNumber + 1;
 
     });
 
-  });
+  
   
 
 }

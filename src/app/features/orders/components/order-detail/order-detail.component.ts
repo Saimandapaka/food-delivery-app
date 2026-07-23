@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import { OrderService } from '../../services/order.service';
 import {HostListener} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NotificationsService } from '@features/notifications/services/notifications.service';
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
@@ -23,7 +24,7 @@ export class OrderDetailComponent {
   constructor(
    
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService, private notificationsService: NotificationsService
   ) {}
   isMobile = window.innerWidth <= 768;
 
@@ -32,68 +33,125 @@ onResize() {
   this.isMobile = window.innerWidth <= 768;
 }
 
-  ngOnInit() {
+ ngOnInit() {
 
-    // Get order id from URL
-    const orderId = this.route.snapshot.paramMap.get('id');
+  // Get Order ID from URL
+  const orderId = this.route.snapshot.paramMap.get('id');
 
-    // Load order
-   this.orderService
-  .getOrderById(orderId!)
-      .subscribe(order => {
+  // Load order details
+  this.orderService.getOrderById(orderId!).subscribe(order => {
 
-        this.order = order;
+    this.order = order;
 
-        // Generate timeline based on placed time and status
-       // For cancelled orders, use the timeline from db.json
-if (order.status !== 'cancelled') {
-  this.order.timeline = this.orderService.getTimeline(
-    order.placedAt,
-    order.status
-  );
-}
-
-      });
-
-    // Update every second
-    this.intervalId = setInterval(() => {
-
-      this.currentTime = new Date();
-
-      if (!this.order) {
-        return;
-      }
-
-      // Get current status according to current time
-      const status = this.orderService.getCurrentStatus(
-        this.order.timeline
+    // Generate timeline for active orders
+    if (order.status !== 'cancelled') {
+      this.order.timeline = this.orderService.getTimeline(
+        order.placedAt,
+        order.status
       );
+    }
 
-      // Update only if status changes
-      if (status && this.order.status !== status) {
+  });
 
-        this.order.status = status;
+  // Check order status every second
+  this.intervalId = setInterval(() => {
 
-        this.orderService.updateOrder(this.order.id,
-          {
-            status,
-            deliveredAt:
-              status === 'delivered'
-                ? new Date().toISOString()
-                : null,
-                
-                 cancelledAt:
-          status === 'cancelled'
-            ? new Date().toISOString()
-            : null
-          }
-        ).subscribe();
+    // Update current time
+    this.currentTime = new Date();
+
+    // Stop if order is not loaded
+    if (!this.order) {
+      return;
+    }
+
+    // Get current status from timeline
+    const status = this.orderService.getCurrentStatus(
+      this.order.timeline
+    );
+
+    // Run only when status changes
+    if (status && this.order.status !== status) {
+
+      // Update local status
+      this.order.status = status;
+
+     
+      // ORDER CONFIRMED NOTIFICATION
+  
+      if (status === 'confirmed') {
+
+        const notification = {
+
+          userId: 1,
+
+          type: 'orders',
+
+          title: 'Order Confirmed',
+
+          description:
+            `${this.order.restaurantName} has confirmed your order.`,
+
+          isRead: false,
+
+          createdAt: new Date().toISOString()
+
+        };
+
+        this.notificationsService.
+          addNotification(notification);
 
       }
 
-    }, 1000);
+     
+      // OUT FOR DELIVERY NOTIFICATION
 
-  }
+      if (status === 'out_for_delivery') {
+
+        const notification = {
+
+          userId: 1,
+
+          type: 'orders',
+
+          title: 'Out for Delivery',
+
+          description:
+            `Your order from ${this.order.restaurantName} is out for delivery.`,
+
+          isRead: false,
+
+          createdAt: new Date().toISOString()
+
+        };
+
+        this.notificationsService
+          .addNotification(notification);
+
+      }
+
+      // Update order in db.json
+      this.orderService.updateOrder(
+        this.order.id,
+        {
+          status,
+
+          deliveredAt:
+            status === 'delivered'
+              ? new Date().toISOString()
+              : null,
+
+          cancelledAt:
+            status === 'cancelled'
+              ? new Date().toISOString()
+              : null
+        }
+      ).subscribe();
+
+    }
+
+  }, 1000);
+
+}
   getCancelledTime(): string | null {
 
   if (this.order?.status !== 'cancelled') {
