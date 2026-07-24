@@ -59,11 +59,7 @@ placeOrder() {
   // Get existing orders
   this.orderService.getOrders().subscribe((data: any) => {
     // Find the highest existing id
-  const maxId = data.orders.length
-    ? Math.max(...data.orders.map((o: any) => Number(o.id)))
-    : 0;
-
-  const nextId = maxId + 1;
+  
 
       const prefix = 'QB2024041200';
 
@@ -93,7 +89,7 @@ const nextNumber = maxNumber + 1;
        const selectedAddress = this.profileService.selectedAddress;
         // Create order object
     const order = {
-     id:nextId,
+     
    orderNumber: `${prefix}${nextNumber}`,
       userId: 2,
       restaurantId: this.menuservice.cart[0].restaurantId,

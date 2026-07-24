@@ -40,7 +40,7 @@
         <div class="m-sum-row"><span>Delivery</span><span>{{deliveryfee | currencyFormat}}</span></div>
         <div class="m-sum-row"><span style="color:#2e7d32;">Discount</span><span style="color:#2e7d32;"><span *ngIf="discountamount>0">₹</span>{{(discountamount)}}</span></div>
         <div class="m-sum-row grand"><span>Total</span><span>{{finalamount | currencyFormat}}</span></div>
-        <button class="m-place-btn">Place order →</button>
+        <button class="m-place-btn"  (click)="placeOrder()">Place order →</button>
 </div>
 <div class="m-sum" *ngIf="ismobile && component==='menu'&& totalitems>0" style="margin-right: 50%; height: 90px;">
   <div class="cart-bar-m" >

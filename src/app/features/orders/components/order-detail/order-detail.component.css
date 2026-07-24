@@ -605,6 +605,14 @@
   background: #dc2626;
   color:whitesmoke
 }
+.back-arrow {
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.back-arrow:hover {
+  color: #0c0b0b;
+}
 @media (max-width: 768px) {
     .od-layout{
         display:block !important;
