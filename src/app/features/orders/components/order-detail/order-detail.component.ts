@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import { OrderService } from '../../services/order.service';
 import {HostListener} from '@angular/core';
@@ -24,7 +24,7 @@ export class OrderDetailComponent {
   constructor(
    
     private route: ActivatedRoute,
-    private orderService: OrderService, private notificationsService: NotificationsService
+    private orderService: OrderService, private notificationsService: NotificationsService,private router: Router
   ) {}
   isMobile = window.innerWidth <= 768;
 
@@ -210,7 +210,9 @@ confirmCancelOrder() {
 
   }
 
-  
+  goToOrders(): void {
+  this.router.navigate(['/orders']);
+}
   // Current order status
   getCurrentStatus(): string {
 

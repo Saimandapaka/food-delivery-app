@@ -31,16 +31,40 @@ import { HostListener } from '@angular/core';
     return items.slice(0, this.isMobile ? 1 : items.length);
    }
 
-   // Load orders from API
-    loadOrders() {
+   loadOrders() {
 
-     this.orderService.getOrders()
-     .subscribe(({ orders, restaurants }) => {
+  this.orderService.getOrders()
+    .subscribe(({ orders, restaurants }) => {
+
+      // Update status of every order
+      orders.forEach((order: any) => {
+
+        // Skip cancelled orders
+        if (order.status === 'cancelled') {
+          return;
+        }
+
+        const currentStatus = this.orderService.getCurrentStatus(order.timeline);
+
+        if (currentStatus && currentStatus !== order.status) {
+
+          order.status = currentStatus;
+
+          this.orderService.updateOrder(order.id, {
+            status: currentStatus,
+            deliveredAt:
+              currentStatus === 'delivered'
+                ? new Date().toISOString()
+                : null
+          }).subscribe();
+
+        }
+
+      });
+
+      // Display orders
       this.orders = orders
-
         .map(order => {
-
-         
 
           const restaurant = restaurants.find(
             r => Number(r.id) === Number(order.restaurantId)
@@ -51,21 +75,19 @@ import { HostListener } from '@angular/core';
             restaurantName: restaurant?.name,
             image: restaurant?.image
           };
+
         })
-
-        // Show order only after placedAt time is reached
-         .filter(order =>
-    new Date() >= new Date(order.placedAt)
-  )
-
-  // Newest order first
-   .sort((a:any, b:any) =>
-    new Date(b.placedAt).getTime() -new Date(a.placedAt).getTime());
+        .filter(order =>
+          new Date() >= new Date(order.placedAt)
+        )
+        .sort((a: any, b: any) =>
+          new Date(b.placedAt).getTime() -
+          new Date(a.placedAt).getTime()
+        );
 
     });
-    
-  
-  }
+
+}
 
   ngOnInit() {
 
